@@ -4,8 +4,6 @@
 // A simple chat server using Socket.IO, Express, and Async.
 //
 
-
-cool!
 var http = require('http');
 var path = require('path');
 
