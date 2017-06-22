@@ -26,24 +26,47 @@
         ng-model="selectedYear"
         ng-change="$ctrl.searchYear(year)"
         >
-
-          <option> 2005 </option>
-          <option> 2006 </option>
-          <option> 2007 </option>
-          <option> 2008 </option>
-          <option> 2009 </option>
-          <option> 2010 </option>
-          <option> 2011 </option>
-          <option> 2012 </option>
-          <option> 2013 </option>
-          <option> 2014 </option>
-          <option> 2015 </option>
-          <option> 2016 </option>
-          <option> 2017 </option>
+          <option>Show All Years</option>
+          <option>2005</option>
+          <option>2006</option>
+          <option>2007</option>
+          <option>2008</option>
+          <option>2009</option>
+          <option>2010</option>
+          <option>2011</option>
+          <option>2012</option>
+          <option>2013</option>
+          <option>2014</option>
+          <option>2015</option>
+          <option>2016</option>
+          <option>2017</option>
 
       </select>
     </span>
 
+    <span ng-show="showYear">
+      Style:
+      <select>
+          <option>Show All Styles</option>
+          <option>4dr Hatchback</option>
+          <option>Coupe</option>
+          <option>Convertible</option>
+          <option>Sedan</option>
+          <option>2dr Hatchback</option>
+          <option>Wagon</option>
+          <option>Regular Cab Pickup</option>
+          <option>Extended Cab Pickup</option>
+          <option>Crew Cab Pickup</option>
+          <option>2dr SUV</option>
+          <option>4dr SUV</option>
+          <option>Convertible SUV</option>
+          <option>Cargo Van/option>
+          <option>Passenger Van</option>
+          <option>Cargo Minivan</option>
+          <option>Passenger Minivan</option>
+
+      </select>
+    </span>
 
   </div>
 
@@ -51,8 +74,8 @@
     <div
       class="modelsbox"
       ng-repeat="model in $ctrl.filteredModelsArr"
-      ng-click="$ctrl.modelClick(model); showAllModels=!showAllModels">
-        <div class="model" > Model: {{model}}</div>
+      >
+        <div class="model" ng-click="$ctrl.modelClick(model); showAllModels=!showAllModels"> Model: {{model}}</div>
 
         <div class="allmodels" ng-show="showAllModels" ng-repeat="allModels in $ctrl.filteredModels[model]">
           {{allModels}}

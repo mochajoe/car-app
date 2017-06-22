@@ -40,14 +40,13 @@ angular.module('app')
     this.searchYear = (year) => {
       this.make = $('#make').val();
       this.index=$('#make')[0].selectedIndex
-      this.year = $('#year').val().split(' ').join('')
-
+      this.year = $('#year').val()
+      if (this.year === "Show All Years") {
+        this.searchMake()
+      } else {
       this.models = this.makes[this.index].models
-
       this.modelsProducedInSelectedYear = []
-
       var keys = Object.keys(this.modelsAndYears)
-
       for(var i = 0; i<keys.length; i++) {
         var models = this.modelsAndYears[keys[i]]
         if(models.includes(this.year)) {
@@ -64,8 +63,8 @@ angular.module('app')
             this.filteredModels[first].push(item)
           }
         }
-
       this.filteredModelsArr = Object.keys(this.filteredModels)
+      }
 
     }
 
