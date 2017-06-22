@@ -25,3 +25,13 @@ angular.module('app', [])
 
   }
 })
+
+
+/**
+
+this.filteredModels = {
+  Honda: [ 'Accord, {years: [2010],
+          , [Civic, {years: [2010]}]
+}
+
+**/
