@@ -3,11 +3,25 @@ angular.module('app', [])
   templateUrl: './src/views/app.html',
 
   controller: function() {
+    this.showSearchBar=false;
+    this.showLogin=true;
+
+
     this.makes = window.carData.makes
     this.searchMake = (make) => {
       this.currentMake=make;
     }
 
-    this.showSearchBar=false
+
+    this.clickLogin = () => {
+      this.showSearchBar=true;
+      this.showLogin=false;
+    }
+
+    this.logOut= () => {
+      this.showSearchBar=false;
+      this.showLogin=true;
+    }
+
   }
 })
