@@ -4,9 +4,12 @@ angular.module('app', [])
 
   controller: function() {
     this.makes = window.carData.makes
-    this.selectMake = (make) => {
+    this.searchMake = (make) => {
       this.currentMake=make;
     }
+
     this.currentMake=this.makes[0]
+
+
   }
 })
