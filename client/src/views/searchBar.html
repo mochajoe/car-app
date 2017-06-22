@@ -1,20 +1,35 @@
-<div id="searchar">
-  <div>Search Vehicles</div>
-    <span class="makes">
-     Select Make:
-      <select class="makesList">
-        <makes>
+<div id="searchbar">
+  <div> Search Vehicles </div>
+    <span>
+      Select Make:
+      <select
+        id = "make"
+        ng-model="selectedMake"
+        ng-change="$ctrl.searchMake(make)">
 
-        </makes>
-        <option value="allMakes">All Makes</option>
-      </select>
-      </span>
+          <option
+            id = "option"
+            ng-repeat="make in $ctrl.makes"
+            value="{{make.name}}">
+            {{make.name}}
+          </option>
 
-    <span class = "years">
-     Select Year:
-      <select class="yearList">
-        <option value="allYears">All Years</option>
       </select>
     </span>
+
+  <div> You selected: {{selectedMake}}</div>
+
+  <div
+    class="models"
+    ng-repeat="model in $ctrl.filteredModelsArr"
+    ng-click="$ctrl.modelClick(model); showTrim=!showTrim">
+      Model: {{model}}
+
+      <div class="trims" ng-show="showTrim" ng-repeat="trim in $ctrl.filteredModels[model]">
+        {{trim}}
+      </div>
+
+
   </div>
+
 </div>

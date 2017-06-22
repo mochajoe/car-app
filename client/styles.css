@@ -1,0 +1,15 @@
+.models {
+  display: block;
+  width: 100%;
+  background-color: white;
+  border: none;
+  text-align: left
+}
+
+.models:hover {
+  background-color: #ece6ff;
+}
+
+.modelTrims {
+  text-align: center;
+}
