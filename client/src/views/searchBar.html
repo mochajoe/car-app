@@ -1,20 +1,22 @@
-<div id="searchar">
+<div id="searchbar">
   <div>Search Vehicles</div>
-    <span class="makes">
-     Select Make:
-      <select class="makesList">
-        <makes>
-
-        </makes>
-        <option value="allMakes">All Makes</option>
+    <span>
+      Select Make:
+      <select ng-model="selectedMake" ng-options="make.name for make in $ctrl.makes">
       </select>
-      </span>
+    </span>
 
-    <span class = "years">
+    <span>
      Select Year:
-      <select class="yearList">
+      <select class="years">
         <option value="allYears">All Years</option>
       </select>
     </span>
+  </div>
+
+
+
+  <div>
+  You selected: {{selectedMake}}
   </div>
 </div>
