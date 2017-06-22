@@ -2,8 +2,7 @@ angular.module('app')
 .component('searchBar', {
   templateUrl: './src/views/searchBar.html',
   bindings: {
-    makes: '<',
-    showSearchBar:'<'
+    makes: '<'
   },
   controller: function() {
 
