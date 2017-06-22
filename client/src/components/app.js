@@ -12,7 +12,6 @@ angular.module('app', [])
       this.currentMake=make;
     }
 
-
     this.clickLogin = () => {
       this.showSearchBar=true;
       this.showLogin=false;
@@ -22,6 +21,7 @@ angular.module('app', [])
       this.showSearchBar=false;
       this.showLogin=true;
     }
+
 
   }
 })

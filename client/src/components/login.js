@@ -1,3 +1,4 @@
+
 angular.module('app')
 .component('login', {
   templateUrl: './src/views/login.html',
@@ -10,3 +11,4 @@ angular.module('app')
 
   }
 })
+
