@@ -3,13 +3,35 @@ angular.module('app', [])
   templateUrl: './src/views/app.html',
 
   controller: function() {
+    this.showSearchBar=false;
+    this.showLogin=true;
+
+
     this.makes = window.carData.makes
     this.searchMake = (make) => {
       this.currentMake=make;
     }
 
-    this.currentMake=this.makes[0]
+    this.clickLogin = () => {
+      this.showSearchBar=true;
+      this.showLogin=false;
+    }
+
+    this.logOut= () => {
+      this.showSearchBar=false;
+      this.showLogin=true;
+    }
 
 
   }
 })
+
+
+/**
+
+this.filteredModels = {
+  Honda: [ 'Accord, {years: [2010],
+          , [Civic, {years: [2010]}]
+}
+
+**/
