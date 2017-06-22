@@ -1,13 +1,49 @@
-.models {
-  display: block;
-  width: 100%;
-  background-color: white;
-  border: none;
-  text-align: left
+body {
+  background-image: url('images/bg5.jpeg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-color: black;
+  color: white;
+  text-align: center;
 }
 
-.models:hover {
+.searchBar {
+
+}
+
+.results {
+  margin: 50px 0 100px 0;
+  padding: 20px;
+}
+
+.modelsbox {
+  margin:auto;
+  display: block;
+  width: 50%;
+  border: none;
+  text-align: left;
+  background-color: white;
+  color: black;
+  opacity: 0.8;
+}
+
+.model:hover {
   background-color: #ece6ff;
+}
+
+.model {
+  padding: 10px 30px;
+
+}
+
+.allmodels {
+  margin: 0;
+  padding: 5px 70px;
+}
+
+.allmodels:hover {
+  background-color: #bacff7;
 }
 
 .modelTrims {

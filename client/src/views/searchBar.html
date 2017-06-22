@@ -1,5 +1,5 @@
-<div id="searchbar">
-  <div> Search Vehicles </div>
+<div>
+  <div class="searchbar"> Search Vehicles
     <span>
       Select Make:
       <select
@@ -16,20 +16,21 @@
 
       </select>
     </span>
+  </div>
 
-  <div> You selected: {{selectedMake}}</div>
+  <div class="results">
+    <div
+      class="modelsbox"
+      ng-repeat="model in $ctrl.filteredModelsArr"
+      ng-click="$ctrl.modelClick(model); showAllModels=!showAllModels">
+        <div class="model" > Model: {{model}}</div>
 
-  <div
-    class="models"
-    ng-repeat="model in $ctrl.filteredModelsArr"
-    ng-click="$ctrl.modelClick(model); showTrim=!showTrim">
-      Model: {{model}}
-
-      <div class="trims" ng-show="showTrim" ng-repeat="trim in $ctrl.filteredModels[model]">
-        {{trim}}
-      </div>
+        <div class="allmodels" ng-show="showAllModels" ng-repeat="allModels in $ctrl.filteredModels[model]">
+          {{allModels}}
+        </div>
 
 
+    </div>
   </div>
 
 </div>

@@ -28,7 +28,7 @@ angular.module('app')
     }
 
     this.modelClick = (model) => {
-      this.showTrim = true;
+      this.showAllModels= true;
     }
 
   }
