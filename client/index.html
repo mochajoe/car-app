@@ -2,23 +2,31 @@
 <html>
   <head>
     <title>Car App</title>
+    <script src="node_modules/lodash/lodash.js"></script>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="src/components/app.js"></script>
+    <script src="src/components/searchBar.js"></script>
+    <!-- <script src="src/index.js"></script> -->
   </head>
   <body>
     <div>Car App</div>
-    <div>Search Vehicles</div>
-    <span class="makes"> 
-      Select Make: 
-      <select class="makesList">
-        <option value="allMakes">All Makes</option>
-      </select>
-      </span>
-    
-    <span class = "years">
-      Select Year: 
-      <select class="yearList">
-        <option value="allYears">All Years</option>
-      </select>
-    </span>
+    <app ng-app="app">Display car app components</app>
+    <!--<div>Search Vehicles</div>-->
+    <!--<span class="makes"> -->
+    <!--  Select Make: -->
+    <!--  <select class="makesList">-->
+    <!--    <option value="allMakes">All Makes</option>-->
+    <!--  </select>-->
+    <!--  </span>-->
+
+    <!--<span class = "years">-->
+    <!--  Select Year: -->
+    <!--  <select class="yearList">-->
+    <!--    <option value="allYears">All Years</option>-->
+    <!--  </select>-->
+    <!--</span>-->
 </div>
   </body>
 </html>
+
