@@ -8,6 +8,8 @@ angular.module('app', [])
       this.currentMake=make;
     }
 
-    this.showSearchBar=false
+    this.currentMake=this.makes[0]
+
+
   }
 })

@@ -1,22 +1,21 @@
-<div id="loginform">
-<h1>Login</h1>
-<form id="logininput">
-<div>
-  username:
-  <input type="text" name="username" />
-</div>
-<br>
-<div>
-  password:
-  <input type="text" name="password" />
-</div>
-<br>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+</head>
+<body>
+  <form action="/login" method="post">
+    <div>
+        <label>Username:</label>
+        <input type="text" name="username"/>
+    </div>
+    <div>
+        <label>Password:</label>
+        <input type="password" name="password"/>
+    </div>
+    <div>
+        <input type="submit" value="Log In"/>
+    </div>
 </form>
-<button >Register</button>
-<button ng-click="$ctrl.clickLogin(); showSearchBar=true">Login</button>
-
-</div>
-
-<search-bar ng-show="showSearchBar" makes="$ctrl.makes">
-
-</search-bar>
+</body>
+</html>

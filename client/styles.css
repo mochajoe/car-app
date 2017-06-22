@@ -8,32 +8,6 @@ body {
   text-align: center;
 }
 
-#app {
-  margin:50px;
-}
-
-#loginform {
-  margin: 10% 30%;
-  background-color: white;
-  opacity: 0.9;
-  color: black;
-  padding: 50px 30px;
-}
-
-#logininput {
-  text-align: right;
-  padding-right: 30%;
-
-}
-
-#registerbutton {
-  align-content: left;
-}
-
-#loginbutton {
-  align-content: right;
-}
-
 .searchBar {
 
 }
@@ -51,7 +25,7 @@ body {
   text-align: left;
   background-color: white;
   color: black;
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
 .model:hover {
