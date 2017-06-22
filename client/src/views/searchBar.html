@@ -17,9 +17,19 @@
       </select>
     </span>
 
-  <div> You selected:</div>
-  <div id="selectedMake">
-  {{selectedMake}}
+  <div> You selected: {{selectedMake}}</div>
+
+  <div
+    class="models"
+    ng-repeat="model in $ctrl.filteredModelsArr"
+    ng-click="$ctrl.modelClick(model); showTrim=!showTrim">
+      Model: {{model}}
+
+      <div class="trims" ng-show="showTrim" ng-repeat="trim in $ctrl.filteredModels[model]">
+        {{trim}}
+      </div>
+
+
   </div>
 
 </div>

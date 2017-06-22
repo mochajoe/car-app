@@ -6,11 +6,29 @@ angular.module('app')
   },
   controller: function() {
 
-    this.searchMake = (make) =>{
+    this.searchMake = (make) => {
       this.make = $('#make').val()
       this.index=$('#make')[0].selectedIndex
       this.models = this.makes[this.index].models
-      console.log(this.models)
+
+
+      this.filteredModels = {}
+
+      for (var i = 0; i<this.models.length; i++) {
+        var item = this.models
+        var first=item[i].name.split(' ')[0]
+        if (!this.filteredModels[first]) {
+          this.filteredModels[first] = [item[i].name]
+        } else {
+          this.filteredModels[first].push(item[i].name)
+        }
+      }
+      console.log(this.filteredModels)
+      this.filteredModelsArr = Object.keys(this.filteredModels)
+    }
+
+    this.modelClick = (model) => {
+      this.showTrim = true;
     }
 
   }
