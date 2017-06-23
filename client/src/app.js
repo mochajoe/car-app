@@ -69,6 +69,7 @@ app.config(function($routeProvider, $locationProvider) {
           $scope.modelsProducedInSelectedYear.push(keys[i])
         }
       }
+
       $scope.filteredModels = {}
       for (var i = 0; i<$scope.modelsProducedInSelectedYear.length; i++) {
           var item = $scope.modelsProducedInSelectedYear[i]
@@ -84,6 +85,12 @@ app.config(function($routeProvider, $locationProvider) {
         $scope.filteredModelsArr=["No Results Found"]
       }
       }
+    }
+
+    $scope.clickDetails = (model) => {
+      $scope.model = model
+      $scope.make = $('#make').val();
+      $scope.yearsAvailable = $scope.modelsAndYears[model].join(' ')
 
     }
 })

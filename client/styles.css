@@ -86,8 +86,11 @@ input {
   text-align: center;
 }
 
-#detailsButton {
-
+#detailsModal {
+  color: black;
 }
 
+.modal-body {
+  text-align: left;
+}
 

@@ -89,9 +89,9 @@
         Model: {{model}}
         </div>
 
-        <div class="allmodels" ng-show="showAllModels" ng-repeat="allModels in filteredModels[model]">
-          {{allModels}}
-          <button id="detailsButton" class="btn btn-primary" data-target="#detailsModal" data-toggle="modal">Details</button>
+        <div class="allmodels" ng-show="showAllModels" ng-repeat="specificModel in filteredModels[model]">
+          {{specificModel}}
+          <button id="detailsButton" class="btn btn-primary" data-target="#detailsModal" data-toggle="modal" ng-click="clickDetails(specificModel)">Details</button>
 
 
         </div>
@@ -108,10 +108,12 @@
     <div class="modal-content">
       <div class="modal-header">
         <button class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Car Details</h4>
+        <h4 class="modal-title">{{model}} Details</h4>
       </div>
       <div class="modal-body">
-        Car Details Go here
+        <p>Make: {{make}}</p>
+        <p>Model: {{model}}</p>
+        <p>Years Available: {{yearsAvailable}}</p>
       </div>
       <div>
         Footer goes here
