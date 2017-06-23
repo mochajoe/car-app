@@ -1,3 +1,6 @@
+
+
+
 <div>
 <h2>Search Cars</h2>
   <div class="searchbar">
@@ -7,12 +10,12 @@
         class = "dropdowns"
         id = "make"
         ng-model="selectedMake"
-        ng-change="$ctrl.searchMake(make); showYear=true"
+        ng-change="searchMake(make); showYear=true"
         >
 
           <option
             id = "option"
-            ng-repeat="make in $ctrl.makes"
+            ng-repeat="make in makes"
             value="{{make.name}}">
             {{make.name}}
           </option>
@@ -26,7 +29,7 @@
         class = "dropdowns"
         id = "year"
         ng-model="selectedYear"
-        ng-change="$ctrl.searchYear(year)"
+        ng-change="searchYear(year)"
         >
           <option>Show All Years</option>
           <option>2005</option>
@@ -46,13 +49,13 @@
       </select>
     </span>
 
-    <span ng-show="showYear">
+    <span ng-show="showStyles">
       Style:
       <select
         class = "dropdowns"
         id = "style"
-        ng-model="selectedYear"
-        ng-change="$ctrl.searchYear(year)">
+        ng-model="selectedStyle"
+        ng-change="searchStyle(style)">
           <option>Show All Styles</option>
           <option>4dr Hatchback</option>
           <option>Coupe</option>
@@ -79,16 +82,43 @@
   <div class="results">
     <div
       class="modelsbox"
-      ng-repeat="model in $ctrl.filteredModelsArr"
+      ng-repeat="model in filteredModelsArr"
       >
-        <div class="model" ng-click="$ctrl.modelClick(model); showAllModels=!showAllModels"> Model: {{model}}</div>
 
-        <div class="allmodels" ng-show="showAllModels" ng-repeat="allModels in $ctrl.filteredModels[model]">
-          {{allModels}}
+        <div class="model" ng-click="modelClick(model); showAllModels=!showAllModels">
+        Model: {{model}}
         </div>
+
+        <div class="allmodels" ng-show="showAllModels" ng-repeat="specificModel in filteredModels[model]">
+          {{specificModel}}
+          <button id="detailsButton" class="btn btn-primary" data-target="#detailsModal" data-toggle="modal" ng-click="clickDetails(specificModel)">Details</button>
+
+
+        </div>
+
 
 
     </div>
   </div>
 
+</div>
+
+<div class="modal" id="detailsModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{model}} Details</h4>
+      </div>
+      <div class="modal-body">
+        <p>Make: {{make}}</p>
+        <p>Model: {{model}}</p>
+        <p>Years Available: {{yearsAvailable}}</p>
+      </div>
+      <div>
+        Footer goes here
+      </div>
+    </div>
+
+  </div>
 </div>
