@@ -1,38 +1,3 @@
-<!--
-<script src="data/make-model-year.js"></script>
-<script src="src/app.js"></script>
-<script src="src/components/login.js"></script> -->
-<!-- <!doctype html>
-<html>
-  <head>
-    <title>Car App</title>
-    <script src="node_modules/jquery/dist/jquery.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="styles.css" />
-    <script src="node_modules/lodash/lodash.js"></script>
-    <script src="node_modules/angular/angular.js"></script>
-    <script src="node_modules/angular-route/angular-route.js"></script>
-    <script src="src/components/searchBar.js"></script>
-
-  </head>
-  <body>
-    <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Cars App</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      <li><a href="#">Log Out</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span>Account</a></li>
-    </ul>
-  </div>
-</nav>
- -->
 
 
 
@@ -119,11 +84,18 @@
       class="modelsbox"
       ng-repeat="model in filteredModelsArr"
       >
-        <div class="model" ng-click="modelClick(model); showAllModels=!showAllModels"> Model: {{model}}</div>
+
+        <div class="model" ng-click="modelClick(model); showAllModels=!showAllModels">
+        Model: {{model}}
+        </div>
 
         <div class="allmodels" ng-show="showAllModels" ng-repeat="allModels in filteredModels[model]">
           {{allModels}}
+          <button id="detailsButton" class="btn btn-primary" data-target="#detailsModal" data-toggle="modal">Details</button>
+
+
         </div>
+
 
 
     </div>
@@ -131,5 +103,20 @@
 
 </div>
 
-<!-- </body>
-</html> -->
+<div class="modal" id="detailsModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Car Details</h4>
+      </div>
+      <div class="modal-body">
+        Car Details Go here
+      </div>
+      <div>
+        Footer goes here
+      </div>
+    </div>
+
+  </div>
+</div>

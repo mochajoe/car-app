@@ -61,26 +61,33 @@ input {
   background-color: white;
   color: black;
   opacity: 0.95;
+  font-size: 16px;
 }
 
 .model:hover {
-  background-color: #ece6ff;
+  background-color: #ccffff;
 }
 
 .model {
-  padding: 10px 30px;
+  padding: 12px 30px;
 
 }
 
 .allmodels {
   margin: 0;
-  padding: 5px 70px;
+  padding: 10px 70px;
 }
 
 .allmodels:hover {
-  background-color: #bacff7;
+  background-color: #ccffff;
 }
 
 .modelTrims {
   text-align: center;
 }
+
+#detailsButton {
+
+}
+
+

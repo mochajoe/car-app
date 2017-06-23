@@ -17,24 +17,12 @@ app.config(function($routeProvider, $locationProvider) {
   $locationProvider.html5Mode(true)
 })
 .controller("searchBarCtrl", function($scope) {
-    // $scope.showSearchBar=false;
-    // $scope.showLogin=true;
-
 
     $scope.makes = window.carData.makes
     $scope.searchMake = (make) => {
       $scope.currentMake=make;
     }
 
-    // $scope.clickLogin = () => {
-    //   $scope.showSearchBar=true;
-    //   $scope.showLogin=false;
-    // }
-
-    // $scope.logOut= () => {
-    //   $scope.showSearchBar=false;
-    //   $scope.showLogin=true;
-    // }
     $scope.searchMake = (make) => {
       $scope.make = $('#make').val()
       $scope.index=$('#make')[0].selectedIndex
@@ -62,7 +50,7 @@ app.config(function($routeProvider, $locationProvider) {
     }
 
     $scope.modelClick = (model) => {
-      $scope.showAllModels= true;
+      $scope.showAllModels= false;
     }
 
     $scope.searchYear = (year) => {
@@ -71,7 +59,7 @@ app.config(function($routeProvider, $locationProvider) {
       $scope.year = $('#year').val()
       if ($scope.year === "Show All Years") {
         $scope.searchMake()
-      } else {
+      }else {
       $scope.models = $scope.makes[$scope.index].models
       $scope.modelsProducedInSelectedYear = []
       var keys = Object.keys($scope.modelsAndYears)
@@ -92,17 +80,14 @@ app.config(function($routeProvider, $locationProvider) {
           }
         }
       $scope.filteredModelsArr = Object.keys($scope.filteredModels)
+      if ($scope.filteredModelsArr.length===0) {
+        $scope.filteredModelsArr=["No Results Found"]
+      }
       }
 
     }
-
 })
 
-/**
 
-$scope.filteredModels = {
-  Honda: [ 'Accord, {years: [2010],
-          , [Civic, {years: [2010]}]
-}
 
-**/
+
