@@ -4,6 +4,7 @@
     <span>
       Select Make:
       <select
+        class = "dropdowns"
         id = "make"
         ng-model="selectedMake"
         ng-change="$ctrl.searchMake(make); showYear=true"
@@ -22,6 +23,7 @@
     <span ng-show="showYear">
       Select Year:
       <select
+        class = "dropdowns"
         id = "year"
         ng-model="selectedYear"
         ng-change="$ctrl.searchYear(year)"
@@ -46,7 +48,11 @@
 
     <span ng-show="showYear">
       Style:
-      <select>
+      <select
+        class = "dropdowns"
+        id = "style"
+        ng-model="selectedYear"
+        ng-change="$ctrl.searchYear(year)">
           <option>Show All Styles</option>
           <option>4dr Hatchback</option>
           <option>Coupe</option>

@@ -4,7 +4,8 @@
   <title>Login Page</title>
 </head>
 <body>
-<div id="loginform"> Log In
+<div id="loginform">
+    <h1>Log In</h1>
   <form action="/login" method="post" id="logininput">
     <div>
         <label>Username:</label>
@@ -18,10 +19,10 @@
         <input type="submit" value="Log In"/>
     </div>
 </form>
+    <p class="guest" ng-click="$ctrl.clickLogin()">Continue as Guest</p>
 </div>
 </body>
 </html>
 
 
 
-<button ng-click="$ctrl.clickLogin()">Login</button>
