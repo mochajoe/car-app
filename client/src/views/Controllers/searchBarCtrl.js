@@ -193,7 +193,9 @@ app.controller("searchBarCtrl", function($scope) {
       var yearsArr = $scope.modelsAndYears[model];
       var year = yearsArr[yearsArr.length-1];
       var url = "https://api.edmunds.com/api/vehicle/v2/" + make + "/" + model + "/" + year + "/styles?fmt=json&api_key=";
-      callback()
+
+      callback()// comment this out after enabling ajax call
+
       // $.ajax({
       //   url: url + "bptp3rjw8nhgtn8bzweudqg9",
       //   success: function(data) {
@@ -217,7 +219,8 @@ app.controller("searchBarCtrl", function($scope) {
     $scope.getEquipmentData = (styleId, callback) => {
       var url = "https://api.edmunds.com/api/vehicle/v2/styles/"+ styleId + "/equipment?fmt=json&api_key=";
 
-      callback()
+      callback()  // comment this out to run ajax call
+
       // $.ajax({
       //   url: url + "bptp3rjw8nhgtn8bzweudqg9",
       //   success: function(data) {
