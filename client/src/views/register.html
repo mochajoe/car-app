@@ -2,35 +2,36 @@
 <body>
  <div id="loginform">
     <h1>Register</h1>
+    <form name="registerForm">
   <div>
         <label>Username:</label>
-        <input type="text" name="username" ng-model='user.username'/>
+        <input type="text" name="username" ng-model='user.username' ng-required="true"/>
     </div>
     <div>
         <label>Password:</label>
-        <input type="password" name="password" ng-model='user.password'/>
+        <input type="password" name="password" ng-model='user.password' ng-required="true"/>
     </div>
      <div>
         <label>Verify Password:</label>
-        <input type="password" name="Verify password" ng-model='user.password2'/>
+        <input type="password" name="Verify password" ng-model='user.password2' ng-required="true"/>
     </div>
     <div>
         <label>Location:</label>
-        <input type="text" name="Location" ng-model='user.location'/>
+        <input type="text" name="Location" ng-model='user.location' ng-required="true"/>
     </div>
     <div>
         <label>Chinese Zodiac Sign:</label>
-        <input type="text" name="Hobby" ng-model='user["Chinese Zodiac Sign"]'/>
+        <input type="text" name="Hobby" ng-model='user["Chinese Zodiac Sign"]' ng-required="true"/>
     </div>
     <div>
         <label>Hobby:</label>
-        <input type="text" name="Hobby" ng-model='user.Hobby'/>
+        <input type="text" name="Hobby" ng-model='user.Hobby' ng-required="true"/>
     </div>
     <div>
-        <input type="submit" value="Log In" ng-click="register(user)"/>
+        <input type="submit" value="Log In" ng-click="register(user)" ng-disabled="registerForm.$invalid"/>
     </div>
 
      <p class="guest" ng-click="$ctrl.clickLogin()"><a href="/searchBar">Continue as Guest</a></p>
 </div>
-
+</form>
 </body>
