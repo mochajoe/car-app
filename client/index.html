@@ -16,6 +16,8 @@
     <script src="src/views/Controllers/login.js"></script>
     <script src="src/views/Controllers/register.js"></script>
     <script src="src/views/Controllers/searchBarCtrl.js"></script>
+    <script src="src/views/Controllers/account.js"></script>
+
 
 
 
@@ -33,10 +35,10 @@
         <li class="active"><a href="/">Home</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/register">Register</a></li>
-        <li><a href="/"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        <li><a href="#">Log Out</a></li>
-        <li><a href="/account"><span class="glyphicon glyphicon-user"></span>Account</a></li>
+        <li ng-show="!currentUser"><a href="/register">Register</a></li>
+        <li ng-show="!currentUser"><a href="/"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li ng-show="currentUser"><a href="/" ng-click="logout()">Log Out</a></li>
+        <li ng-show="currentUser"><a href="/account"><span class="glyphicon glyphicon-user"></span>Account</a></li>
       </ul>
     </div>
   </nav>

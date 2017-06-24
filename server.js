@@ -123,6 +123,11 @@ app.get("/loggedin", function(req, res){
   }
 });
 
+app.post("/logout", function(req, res){
+  req.logOut();
+  res.send(200);
+});
+
 //passports looks at this request first, local is the easiest strategy, username and password
 app.post('/login',passport.authenticate('local'), (req,res) => {
   console.log('/login');
