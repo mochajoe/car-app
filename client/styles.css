@@ -45,6 +45,7 @@ input {
 
 .dropdowns {
   color: black;
+  font-size: 20px;
 }
 
 .results {
@@ -61,7 +62,7 @@ input {
   background-color: white;
   color: black;
   opacity: 0.95;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 .model:hover {
@@ -76,6 +77,8 @@ input {
 .allmodels {
   margin: 0;
   padding: 10px 70px;
+  width: 100%;
+  overflow: hidden;
 }
 
 .allmodels:hover {
@@ -94,3 +97,8 @@ input {
   text-align: left;
 }
 
+
+#detailsButton {
+  overflow: hidden;
+  float:right;
+}
