@@ -70,7 +70,6 @@ function(username, password, done)
    UserModel.findOne({username: username, password: password}, function (err, user){
     if(user)
     {
-      console.log("in passport");
       return done(null, user); //if we find it then we reply with the user object
     }
     // if no user is found then false
@@ -123,7 +122,7 @@ app.get("/loggedin", function(req, res){
 
 app.post("/logout", function(req, res){
   req.logOut();
-  res.send(200);
+  res.sendStatus(200);
 });
 
 //passports looks at this request first, local is the easiest strategy, username and password
