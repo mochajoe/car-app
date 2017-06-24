@@ -48,20 +48,16 @@ input {
 }
 
 .results {
-  margin: 50px 0 100px 0;
-  padding: 20px;
+  font-size: 20px;
 }
 
 .modelsbox {
   margin:auto;
   display: block;
-  width: 50%;
+  width: 100%;
   border: none;
   text-align: left;
-  background-color: white;
-  color: black;
-  opacity: 0.95;
-  font-size: 20px;
+
 }
 
 .model:hover {
