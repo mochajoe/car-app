@@ -2,8 +2,8 @@ var app = angular.module('app', ['ngRoute'])
 app.config(function($routeProvider, $locationProvider) {
   $routeProvider
   .when('/', {
-    templateUrl: '/src/views/login.html',
-    controller: 'loginCtrl'
+    templateUrl: '/src/views/searchBar.html',
+    controller: 'searchBarCtrl'
   })
   .when('/login', {
     templateUrl: '/src/views/login.html',
