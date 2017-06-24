@@ -20,12 +20,8 @@
         <input type="text" name="Location" ng-model='user.location' ng-required="true"/>
     </div>
     <div>
-        <label>Chinese Zodiac Sign:</label>
-        <input type="text" name="Hobby" ng-model='user["Chinese Zodiac Sign"]' ng-required="true"/>
-    </div>
-    <div>
-        <label>Hobby:</label>
-        <input type="text" name="Hobby" ng-model='user.Hobby' ng-required="true"/>
+        <label>Short Bio about yourself:</label>
+        <input type="text" name="bio" ng-model='user.bio' ng-required="true"/>
     </div>
     <div>
         <input type="submit" value="Log In" ng-click="register(user)" ng-disabled="registerForm.$invalid"/>

@@ -43,8 +43,7 @@ var UserSchema = new mongoose.Schema({
   username: String,
   password: String,
   location: String,
-  hobby: String,
-  "Chinese Zodiac Sign" : String
+  bio: String
 });
 
 // model for maintaining user data
