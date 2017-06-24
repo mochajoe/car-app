@@ -44,7 +44,8 @@ var UserSchema = new mongoose.Schema({
   username: String,
   password: String,
   location: String,
-  about: String
+  hobby: String,
+  "Chinese Zodiac Sign" : String
 });
 
 // model for maintaining user data
@@ -98,7 +99,7 @@ app.get('/secret', function(req, res) {
 
 })
 
-// Authentication Routes SHIT!!!!!!!
+// Authentication Routes
 
 app.get('/register', function(req, res) {
   res.sendFile(__dirname + '/client/index.html');
@@ -122,9 +123,28 @@ app.post('/login',passport.authenticate('local'), (req,res) => {
   console.log(req.user);
   res.json(req.user);
 })
-
+//check if that user exists already in our data base
+//if they are in our database than we don't let them register
 app.post("/register", function (req, res){
-  console.log(req.user)
+  UserModel.findOne({username:req.body.username}, (err,user) => {
+    if(user) {
+      //if user is in database. don't insert
+      return res.json(null);
+
+    } else {
+      var newUser = new UserModel(req.body);
+      newUser.save((err,user) => {
+        //passport has a login method
+        req.login(user, (err) => {
+          if(err) {
+            return next(err);
+          }
+                  res.json(user);
+
+        }); //it says this is the current logged in user
+      });
+    }
+  })
   var newUser = req.body;
   console.log(newUser);
 });
