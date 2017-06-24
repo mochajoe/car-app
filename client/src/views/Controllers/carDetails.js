@@ -1,86 +1,25 @@
-// app.controller("searchBarCtrl", function($scope) {
-//     $scope.newDivTemplate = "src/views/carDetails.html"
-//     $scope.makes = window.carData.makes
-//     $scope.searchMake = (make) => {
-//       $scope.currentMake=make;
-//     }
-
-//     $scope.searchMake = (make) => {
-//       $scope.make = $('#make').val()
-//       $scope.index=$('#make')[0].selectedIndex
-//       $scope.models = $scope.makes[$scope.index].models
-
-//       $scope.filteredModels = {}
-//       $scope.modelsAndYears = {}
-//         for (var i = 0; i<$scope.models.length; i++) {
-//           var item = $scope.models[i]
-//           var first=item.name.split(' ')[0]
-//           var years = item.years.map(function(item) {
-//             return item.year.toString();
-//           })
-//           if (!$scope.filteredModels[first]) {
-//             $scope.filteredModels[first] = [item.name]
-//           } else {
-//             $scope.filteredModels[first].push(item.name)
-//           }
-
-//           $scope.modelsAndYears[item.name] = years
+// app.controller("carDetailsCtrl", function($scope) {
+//   console.log("scope", $scope)
+// $scope.clickDetails = (model) => {
+//       var model = $scope.carDetailModel
+//       $scope.getStyle(model, function(data){
+//         if (!data) {
+//           $scope.style = window.sampleStyleData;
+//         } else {
+//           $scope.styleId = data.styles[0].id;
+//           $scope.style = data;
 //         }
 
-//       $scope.filteredModelsArr = Object.keys($scope.filteredModels)
-//       console.log($scope.filteredModelsArr)
-
-//     }
-
-//     $scope.modelClick = (model) => {
-//       $scope.showAllModels= false;
-//     }
-
-//     $scope.searchYear = (year) => {
-//       $scope.make = $('#make').val();
-//       $scope.index=$('#make')[0].selectedIndex
-//       $scope.year = $('#year').val()
-//       if ($scope.year === "Show All Years") {
-//         $scope.searchMake()
-//       }else {
-//       $scope.models = $scope.makes[$scope.index].models
-//       $scope.modelsProducedInSelectedYear = []
-//       var keys = Object.keys($scope.modelsAndYears)
-//       for(var i = 0; i<keys.length; i++) {
-//         var models = $scope.modelsAndYears[keys[i]]
-//         if(models.includes($scope.year)) {
-//           $scope.modelsProducedInSelectedYear.push(keys[i])
-//         }
-//       }
-
-//       $scope.filteredModels = {}
-//       for (var i = 0; i<$scope.modelsProducedInSelectedYear.length; i++) {
-//           var item = $scope.modelsProducedInSelectedYear[i]
-//           var first=item.split(' ')[0]
-//           if (!$scope.filteredModels[first]) {
-//             $scope.filteredModels[first] = [item]
-//           } else {
-//             $scope.filteredModels[first].push(item)
-//           }
-//         }
-//       $scope.filteredModelsArr = Object.keys($scope.filteredModels)
-//       if ($scope.filteredModelsArr.length===0) {
-//         $scope.filteredModelsArr=["No Results Found"]
-//       }
-//       }
-//     }
-
-//     $scope.clickDetails = (model) => {
-
-//       $scope.getStyle(model, function(data = window.sampleStyleData){
-//         $scope.styleId = data.styles[0].id;
-//         $scope.style = data;
+//         // $scope.styleId = data.styles[0].id;
+//         // $scope.style = data;
 //       })
 
 
-//       $scope.getEquipmentData($scope.styleId, function(data = window.sampleEquipmentData) {
+//       $scope.getEquipmentData($scope.styleId, function(data) {
 //         $scope.equipmentData = data;
-//         console.log(data)
+//         if (!$scope.equipmentData) {
+//           $scope.equipmentData = window.sampleEquipmentData;
+//         }
 
 //       })
 
@@ -153,7 +92,7 @@
 //           $scope.gasType = equipment.fuelType;
 //         }
 
-//         if (equipment.equipmentType === "ENGINE" &&  equipment.code) {
+//         if (equipment.equipmentType === "ENGINE" &&  equipment.code && !$scope.engineCode) {
 //           $scope.engineCode = equipment.code;
 //         }
 
@@ -167,35 +106,60 @@
 //     }
 
 //     $scope.getStyle = (model, callback) => {
-//       var api_key = "vwp9323cjna6pjxg5jqtc3qc" //2k98pna4hq6mcrwte39t2gcg";
+//       //bptp3rjw8nhgtn8bzweudqg9
+//       //2k98pna4hq6mcrwte39t2gcg
+
 //       var make = $('#make').val();
 //       var yearsArr = $scope.modelsAndYears[model];
 //       var year = yearsArr[yearsArr.length-1];
-//       var url = "https://api.edmunds.com/api/vehicle/v2/" + make + "/" + model + "/" + year + "/styles?fmt=json&api_key=" + api_key;
+//       var url = "https://api.edmunds.com/api/vehicle/v2/" + make + "/" + model + "/" + year + "/styles?fmt=json&api_key=";
 
-//       console.log(url)
+//       callback()// comment this out after enabling ajax call
+
 //       // $.ajax({
-//         // url: url,
-//         // success: function(data) {
-//            callback(data)
+//       //   url: url + "bptp3rjw8nhgtn8bzweudqg9",
+//       //   success: function(data) {
+//       //      callback(data)
+//       //   },
+//       //   error: function() {
+//       //     $.ajax({
+//       //       url: url + "73nq99k66vq774ycfte8fthk",
+//       //       success: function(data) {
+//       //          callback(data)
+//       //       },
+//       //       error: function() {
+//       //       },
+//       //       async: false
+//       //     })
 //       //   },
 //       //   async: false
 //       // })
 //     }
 
 //     $scope.getEquipmentData = (styleId, callback) => {
-//       var api_key = "vwp9323cjna6pjxg5jqtc3qc" //2k98pna4hq6mcrwte39t2gcg";
-//       var url = "https://api.edmunds.com/api/vehicle/v2/styles/"+ styleId + "/equipment?fmt=json&api_key=" + api_key;
-//       console.log(url)
+//       var url = "https://api.edmunds.com/api/vehicle/v2/styles/"+ styleId + "/equipment?fmt=json&api_key=";
+
+//       callback()  // comment this out to run ajax call
+
 //       // $.ajax({
-//       //   url: url,
+//       //   url: url + "bptp3rjw8nhgtn8bzweudqg9",
 //       //   success: function(data) {
-//            callback(data)
+//       //      callback(data)
+//       //   },
+//       //   error: function() {
+//       //     $.ajax({
+//       //       url: url + "73nq99k66vq774ycfte8fthk",
+//       //       success: function(data) {
+//       //          callback(data)
+//       //       },
+//       //       error: function() {
+//       //       },
+//       //       async: false
+//       //     })
 //       //   },
 //       //   async: false
 //       // })
 //     }
-
 
 // })
 

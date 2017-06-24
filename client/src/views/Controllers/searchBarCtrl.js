@@ -78,29 +78,35 @@ app.controller("searchBarCtrl", function($scope) {
 
     }
 
-
-
     $scope.clickDetails = (model) => {
       var model = $scope.carDetailModel
+
       $scope.getStyle(model, function(data){
-        if (!data) {
-          $scope.style = window.sampleStyleData;
-        } else {
-          $scope.styleId = data.styles[0].id;
-          $scope.style = data;
-        }
-
-        // $scope.styleId = data.styles[0].id;
-        // $scope.style = data;
+        $scope.styleId = data.styles[0].id;
+        $scope.style = data;
       })
-
 
       $scope.getEquipmentData($scope.styleId, function(data) {
         $scope.equipmentData = data;
-        if (!$scope.equipmentData) {
-          $scope.equipmentData = window.sampleEquipmentData;
-        }
 
+      })
+
+      $scope.getPhoto($scope.styleId, function(data) {
+        $scope.modelImages = [];
+        data.photos.forEach(function(item) {
+          if(item.category ==="EXTERIOR") {
+            item.sources.forEach(function(source) {
+              if (source.size.width === 500) {
+                $scope.modelImages.push("https://media.ed.edmunds-media.com" + source.link.href)
+              }
+            })
+          }
+        })
+        console.log($scope.modelImages)
+      })
+
+      $scope.getMSRP($scope.styleId, function(data) {
+        $scope.MSRP = data.pricingAttributeGroup.attributes.MSRP.value
       })
 
       $scope.model = model;
@@ -193,7 +199,9 @@ app.controller("searchBarCtrl", function($scope) {
       var yearsArr = $scope.modelsAndYears[model];
       var year = yearsArr[yearsArr.length-1];
       var url = "https://api.edmunds.com/api/vehicle/v2/" + make + "/" + model + "/" + year + "/styles?fmt=json&api_key=";
-      callback()
+
+      callback(window.sampleStyleData)// comment this out after enabling ajax call
+
       // $.ajax({
       //   url: url + "bptp3rjw8nhgtn8bzweudqg9",
       //   success: function(data) {
@@ -217,7 +225,8 @@ app.controller("searchBarCtrl", function($scope) {
     $scope.getEquipmentData = (styleId, callback) => {
       var url = "https://api.edmunds.com/api/vehicle/v2/styles/"+ styleId + "/equipment?fmt=json&api_key=";
 
-      callback()
+      callback(window.sampleEquipmentData)  // comment this out to run ajax call
+
       // $.ajax({
       //   url: url + "bptp3rjw8nhgtn8bzweudqg9",
       //   success: function(data) {
@@ -238,6 +247,12 @@ app.controller("searchBarCtrl", function($scope) {
       // })
     }
 
+    $scope.getPhoto = (styleId, callback) => {
+      callback(window.samplePhotos)
+    }
 
+    $scope.getMSRP = (styleId, callback) => {
+      callback(window.modelConfig)
+    }
 })
 
