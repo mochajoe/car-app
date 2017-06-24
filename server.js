@@ -117,7 +117,11 @@ app.get('/searchBar', (req, res) => {
 })
 
 app.get("/loggedin", function(req, res){
-  res.send(req.isAuthenticated() ? req.user : '0');
+ if (req.isAuthenticated()) {
+    res.send(req.user)
+  } else {
+    res.send(0);
+  }
 });
 
 //passports looks at this request first, local is the easiest strategy, username and password
