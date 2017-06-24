@@ -21,7 +21,7 @@
     </div>
     <div>
         <label>Short Bio about yourself:</label>
-        <input type="text" name="bio" ng-model='user.bio' ng-required="true"/>
+       <textarea rows="8" cols="50" name="bio" ng-model='user.bio' ng-required="true" />
     </div>
     <div>
         <input type="submit" value="Log In" ng-click="register(user)" ng-disabled="registerForm.$invalid"/>
