@@ -91,12 +91,17 @@ passport.deserializeUser(function(user, done) {
 });
 
 
-// Authentication Routes SHIT!!!!!!!
-
-app.get("/register", (req, res) => {
-    res.sendFile('./client/src/views/register.html', {
+app.get('/secret', function(req, res) {
+    res.sendFile('./client/src/views/secret.html', {
         root: __dirname
     });
+
+})
+
+// Authentication Routes SHIT!!!!!!!
+
+app.get('/register', function(req, res) {
+  res.sendFile(__dirname + '/client/index.html');
 });
 
 app.get('/login', function(req, res) {
@@ -118,14 +123,8 @@ app.post('/login',passport.authenticate('local'), (req,res) => {
   res.json(req.user);
 })
 
-// app.post('/login',
-//   passport.authenticate('local', { successRedirect: '/',
-//                                    failureRedirect: '/login',
-//                                    failureFlash: true })
-// );
-
 app.post("/register", function (req, res){
-  console.log(req.user);
+  console.log(req.user)
   var newUser = req.body;
   console.log(newUser);
 });
