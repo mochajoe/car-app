@@ -91,13 +91,6 @@ passport.deserializeUser(function(user, done) {
 });
 
 
-app.get('/secret', function(req, res) {
-    res.sendFile('./client/src/views/secret.html', {
-        root: __dirname
-    });
-
-})
-
 // Authentication Routes SHIT!!!!!!!
 
 app.get("/register", (req, res) => {
@@ -132,14 +125,11 @@ app.post('/login',passport.authenticate('local'), (req,res) => {
 // );
 
 app.post("/register", function (req, res){
-  UserModel.findOne({username: req.body.username}, function(err, user){
-    var newUser = req.body;
-    console.log(newUser);
-  });
-
+  console.log(req.user);
   var newUser = req.body;
   console.log(newUser);
 });
+
 
 
 
