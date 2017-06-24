@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
 var passport = require('passport');
-var multer = require('multer');
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
