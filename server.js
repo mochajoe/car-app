@@ -35,8 +35,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-// DATABASE SHIT!!!!!!!!!!!
-
+// DATABASE
 var connectionString = /*I will add my mlabs database here* process.env./ ||*/ 'mongodb://localhost/test';
 var db = mongoose.connect(connectionString);
 
@@ -57,7 +56,7 @@ var UserModel = mongoose.model("UserModel", UserSchema);
 // admin.save();
 // student.save();
 
-//Authentication shit!!!!!!
+//Authentication
 
 
 
