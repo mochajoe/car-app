@@ -100,6 +100,9 @@ app.get('/secret', function(req, res) {
 })
 
 // Authentication Routes
+app.get('/account', function(req, res) {
+  res.sendFile(__dirname + '/client/index.html');
+});
 
 app.get('/register', function(req, res) {
   res.sendFile(__dirname + '/client/index.html');

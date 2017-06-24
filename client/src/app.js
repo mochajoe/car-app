@@ -17,6 +17,9 @@ app.config(function($routeProvider, $locationProvider) {
     templateUrl: '/src/views/searchBar.html',
     controller: 'searchBarCtrl'
   })
+  .when('/account', {
+    templateUrl: '/src/views/account.html'
+  })
 
 
   $locationProvider.html5Mode(true)
