@@ -13,6 +13,10 @@ app.config(function($routeProvider, $locationProvider) {
     templateUrl: '/src/views/searchBar.html',
     controller: 'searchBarCtrl'
   })
+  .when('/register', {
+    templateUrl: '/src/views/register.html',
+    controller: 'registerCtrl'
+  })
 
   $locationProvider.html5Mode(true)
 })

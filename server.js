@@ -25,7 +25,7 @@ app.use(session({
     saveUninitialized: false
 }));
 
-passportLocalMongoose = require('passport-local-mongoose');
+
 
 app.use(express.static(__dirname + '/client'));
 app.use(flash());
@@ -37,7 +37,7 @@ app.use(bodyParser.urlencoded({
 
 // DATABASE SHIT!!!!!!!!!!!
 
-var connectionString = /*I will add my mlabs database here* process.env./ ||*/ 'mongodb://localhost/loginapp';
+var connectionString = /*I will add my mlabs database here* process.env./ ||*/ 'mongodb://localhost/test';
 var db = mongoose.connect(connectionString);
 
 var UserSchema = new mongoose.Schema({
@@ -50,6 +50,11 @@ var UserSchema = new mongoose.Schema({
 // model for maintaining user data
 var UserModel = mongoose.model("UserModel", UserSchema);
 
+// var admin = new UserModel({username:'Anthony',password:'john',location:'Boston', about:"I love BMWs"})
+// var student = new UserModel({username:'Bob',password:'ddd',location:'Washington DC', about:"I love Toyotas"})
+
+// admin.save();
+// student.save();
 
 //Authentication shit!!!!!!
 
@@ -63,18 +68,16 @@ passport.use(new LocalStrategy(
 function(username, password, done)
 {
 
-  // console.log("in passport");
-  // UserModel.findOne({username: username, password: password}, function (err, user){
-  //   if(user)
-  //   {
-  //     console.log("in passport");
-
-  //     // if user is found return user
-  //     return done(null, user);
-  //   }
-  //   // otherwise we return false
+   console.log("in passport");
+   UserModel.findOne({username: username, password: password}, function (err, user){
+    if(user)
+    {
+      console.log("in passport");
+      return done(null, user); //if we find it then we reply with the user object
+    }
+    // if no user is found then false
     return done(null, false, {message: 'Unable to login'});
-  // });
+  });
 }));
 
 
@@ -118,7 +121,8 @@ app.get("/loggedin", function(req, res){
 //passports looks at this request first, local is the easiest strategy, username and password
 app.post('/login',passport.authenticate('local'), (req,res) => {
   console.log('/login');
-  console.log(req.body);
+  console.log(req.user);
+  res.json(req.user);
 })
 
 // app.post('/login',
@@ -129,23 +133,8 @@ app.post('/login',passport.authenticate('local'), (req,res) => {
 
 app.post("/register", function (req, res){
   UserModel.findOne({username: req.body.username}, function(err, user){
-    // if user already exists, return null
-    if(user)
-    {
-      res.json(null);
-      return;
-    }
-    else
-    {
-      var newUser = new UserModel(req.body);
-      newUser.save(function(err, user){
-        req.login(user, function(err)
-        {
-          if(err) {return next(err); }
-          res.json(user);
-        });
-      });
-    }
+    var newUser = req.body;
+    console.log(newUser);
   });
 
   var newUser = req.body;
