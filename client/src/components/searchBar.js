@@ -1,74 +1,82 @@
 // angular.module('app')
-// .component('searchBar', {
-//   templateUrl: './src/views/searchBar.html',
-//   bindings: {
-//     makes: '<',
-//     showSearchBar:'<'
-//   },
-//   controller: function() {
+// .controller("searchBarCtrl", [$scope, function($scope) {
 
-//     this.searchMake = (make) => {
-//       this.make = $('#make').val()
-//       this.index=$('#make')[0].selectedIndex
-//       this.models = this.makes[this.index].models
+//     $scope.makes = window.carData.makes
+//     $scope.searchMake = (make) => {
+//       $scope.currentMake=make;
+//     }
 
-//       this.filteredModels = {}
-//       this.modelsAndYears = {}
-//         for (var i = 0; i<this.models.length; i++) {
-//           var item = this.models[i]
+//     $scope.searchMake = (make) => {
+//       $scope.make = $('#make').val()
+//       $scope.index=$('#make')[0].selectedIndex
+//       $scope.models = $scope.makes[$scope.index].models
+
+//       $scope.filteredModels = {}
+//       $scope.modelsAndYears = {}
+//         for (var i = 0; i<$scope.models.length; i++) {
+//           var item = $scope.models[i]
 //           var first=item.name.split(' ')[0]
 //           var years = item.years.map(function(item) {
 //             return item.year.toString();
 //           })
-//           if (!this.filteredModels[first]) {
-//             this.filteredModels[first] = [item.name]
+//           if (!$scope.filteredModels[first]) {
+//             $scope.filteredModels[first] = [item.name]
 //           } else {
-//             this.filteredModels[first].push(item.name)
+//             $scope.filteredModels[first].push(item.name)
 //           }
 
-//           this.modelsAndYears[item.name] = years
+//           $scope.modelsAndYears[item.name] = years
 //         }
 
-//       this.filteredModelsArr = Object.keys(this.filteredModels)
+//       $scope.filteredModelsArr = Object.keys($scope.filteredModels)
 
 //     }
 
-//     this.modelClick = (model) => {
-//       this.showAllModels= true;
+//     $scope.modelClick = (model) => {
+//       $scope.showAllModels= false;
 //     }
 
-//     this.searchYear = (year) => {
-//       this.make = $('#make').val();
-//       this.index=$('#make')[0].selectedIndex
-//       this.year = $('#year').val()
-//       if (this.year === "Show All Years") {
-//         this.searchMake()
-//       } else {
-//       this.models = this.makes[this.index].models
-//       this.modelsProducedInSelectedYear = []
-//       var keys = Object.keys(this.modelsAndYears)
+//     $scope.searchYear = (year) => {
+//       $scope.make = $('#make').val();
+//       $scope.index=$('#make')[0].selectedIndex
+//       $scope.year = $('#year').val()
+//       if ($scope.year === "Show All Years") {
+//         $scope.searchMake()
+//       }else {
+//       $scope.models = $scope.makes[$scope.index].models
+//       $scope.modelsProducedInSelectedYear = []
+//       var keys = Object.keys($scope.modelsAndYears)
 //       for(var i = 0; i<keys.length; i++) {
-//         var models = this.modelsAndYears[keys[i]]
-//         if(models.includes(this.year)) {
-//           this.modelsProducedInSelectedYear.push(keys[i])
+//         var models = $scope.modelsAndYears[keys[i]]
+//         if(models.includes($scope.year)) {
+//           $scope.modelsProducedInSelectedYear.push(keys[i])
 //         }
 //       }
-//       this.filteredModels = {}
-//       for (var i = 0; i<this.modelsProducedInSelectedYear.length; i++) {
-//           var item = this.modelsProducedInSelectedYear[i]
+
+//       $scope.filteredModels = {}
+//       for (var i = 0; i<$scope.modelsProducedInSelectedYear.length; i++) {
+//           var item = $scope.modelsProducedInSelectedYear[i]
 //           var first=item.split(' ')[0]
-//           if (!this.filteredModels[first]) {
-//             this.filteredModels[first] = [item]
+//           if (!$scope.filteredModels[first]) {
+//             $scope.filteredModels[first] = [item]
 //           } else {
-//             this.filteredModels[first].push(item)
+//             $scope.filteredModels[first].push(item)
 //           }
 //         }
-//       this.filteredModelsArr = Object.keys(this.filteredModels)
+//       $scope.filteredModelsArr = Object.keys($scope.filteredModels)
+//       if ($scope.filteredModelsArr.length===0) {
+//         $scope.filteredModelsArr=["No Results Found"]
 //       }
-
+//       }
 //     }
 
-//   }
+//     $scope.clickDetails = (model) => {
+//       $scope.bodyType = window.sampleStyleData.styles
+//       console.log($scope.bodyType)
+//       $scope.model = model
+//       $scope.make = $('#make').val();
+//       $scope.yearsAvailable = $scope.modelsAndYears[model].join(' ')
+//     }
 
 
-// });
+// }])
