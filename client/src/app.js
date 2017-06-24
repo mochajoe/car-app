@@ -18,10 +18,31 @@ app.config(function($routeProvider, $locationProvider) {
     controller: 'searchBarCtrl'
   })
   .when('/account', {
-    templateUrl: '/src/views/account.html'
+    templateUrl: '/src/views/account.html',
+    resolve : {
+      //we can go here if the following dependancies are resolved, that is what resolve is
+      logincheck: checkLoggedin
+
+    }
   })
 
   $locationProvider.html5Mode(true)
 });
 
+// need to write a function to checkLogged in
 
+
+var checkLoggedin = ($http,$rootScope,$location) => {
+  $http.get('/loggedin')
+    .then( (user)=> {
+      if(user.data !== '0') {
+        $rootScope.currentUser = user.data;
+        console.log($rootScope.currentUser );
+      }
+
+      else {
+        $rootScope.errorMEssage = "You need to log in";
+        $location.url('/login')
+      }
+    })
+  }
