@@ -84,7 +84,6 @@
       class="modelsbox"
       ng-repeat="model in filteredModelsArr"
       >
-
         <div class="model" ng-click="modelClick(model); showAllModels=!showAllModels">
         Model: {{model}}
         </div>
@@ -111,12 +110,29 @@
         <h4 class="modal-title">{{model}} Details</h4>
       </div>
       <div class="modal-body">
+        <div>
         <p>Make: {{make}}</p>
         <p>Model: {{model}}</p>
+        <p>Body Type: {{bodyType}}</p>
         <p>Years Available: {{yearsAvailable}}</p>
+        <p>Transmission: {{transmission}}</p>
+        <p>MPG: {{mpg}}</p>
+        <p>Fuel Capacity: {{fuelCapacity}}</p>
+        <p>Seating: {{seating}}</p>
+        <p>Drive Type: {{driveType}}</p>
+        </div>
+        <hr>
+        <div>
+        <h4>Engine</h4>
+        <p>Cylinder: {{cylinder}}</p>
+        <p>Size: {{size}}</p>
+        <p>Displacement: {{displacement}}</p>
+        <p>Gas Type: {{gasType}}</p>
+        <p>Engine Code: {{engineCode}}</p>
+        </div>
       </div>
       <div>
-        Footer goes here
+
       </div>
     </div>
 

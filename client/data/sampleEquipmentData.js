@@ -1,4 +1,4 @@
-{
+window.sampleEquipmentData = {
   "equipment": [
     {
       "id": "10135396813",

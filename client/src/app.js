@@ -96,11 +96,50 @@ app.config(function($routeProvider, $locationProvider) {
     }
 
     $scope.clickDetails = (model) => {
-      $scope.model = model
-      $scope.make = $('#make').val();
-      $scope.yearsAvailable = $scope.modelsAndYears[model].join(' ')
 
+      // $scope.getStyleId(model, function(data){
+
+      // })
+
+      $scope.model = model;
+      $scope.make = $('#make').val();
+      $scope.yearsAvailable = $scope.modelsAndYears[model].join(' ');
+      $scope.bodyType = window.sampleStyleData.styles[0].submodel.body;
+      $scope.transmission = window.sampleEquipmentData.equipment[34].transmissionType;
+      $scope.mpg = window.sampleEquipmentData.equipment[22].attributes[3].value + '/' + window.sampleEquipmentData.equipment[22].attributes[4].value;
+      $scope.fuelCapacity = window.sampleEquipmentData.equipment[22].attributes[5].value;
+      $scope.driveType = window.sampleEquipmentData.equipment[24].attributes[0].value;
+      $scope.cylinder = window.sampleEquipmentData.equipment[33].cylinder;
+      $scope.size = window.sampleEquipmentData.equipment[33].size;
+      $scope.displacement = window.sampleEquipmentData.equipment[33].displacement;
+      $scope.gasType = window.sampleEquipmentData.equipment[33].fuelType;
+      $scope.engineCode = window.sampleEquipmentData.equipment[33].code;
+
+      $scope.seating = window.sampleEquipmentData.equipment[17].attributes.reduce(function(a,b) {
+          if (typeof a !== "number") {
+            a = parseInt(a.value)
+          }
+          if (typeof b !== "number") {
+            b= parseInt(b.value)
+          }
+          return a + b
+      });
+
+      console.log(window.sampleEquipmentData.equipment[34])
+
+      //console.log($scope.transmission)
     }
+
+    $scope.getStyleId = (callback) => {
+      $.ajax({
+        url: '',
+        success: function(data) {
+          callback(data)
+        }
+      })
+    }
+
+
 })
 
 
