@@ -1,5 +1,5 @@
 app.controller('logoutCtrl', function($rootScope,$scope,$http,$location,$timeout){
- $scope.logout = function()
+ var logout = function()
   {
     $http.post("/logout")
     .then(function(){
@@ -7,5 +7,5 @@ app.controller('logoutCtrl', function($rootScope,$scope,$http,$location,$timeout
       $location.url("/");
     });
   }
-  $timeout($scope.logout(), 50000000);
+  $timeout(logout, 700)
 });
