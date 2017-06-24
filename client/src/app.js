@@ -19,31 +19,20 @@ app.config(function($routeProvider, $locationProvider) {
   })
   .when('/account', {
     templateUrl: '/src/views/account.html',
-    controller: 'accountCtrl'
+    resolve : {
+      //we can go here if the following dependancies are resolved
+      //have a logincheck
+      logincheck: checkLoggedin
+
+    }
   })
 
   $locationProvider.html5Mode(true)
 });
 
-var checkLoggedin = function($q, $timeout, $http, $location, $rootScope){
-  var deferred = $q.defer()
+// need to write a function to checkLogged in
 
-  $http.get('loggedin').success(function(user)
-  {
-    $rootScope.errorMessage = null;
-    // User is Authenticated
-    if (user !== '0')
-    {
-      $rootScope.currentUser = user;
-      deferred.resolve();
-    }
-    // User is Not Authenticated
-    else
-    {
-      $rootScope.errorMessage = 'You need to log in.';
-      deferred.reject();
-      $location.url('/login');
-    }
-  });
+
+var checkLoggedin = () => {
+
 }
-
