@@ -33,6 +33,17 @@ app.config(function($routeProvider, $locationProvider) {
 // need to write a function to checkLogged in
 
 
-var checkLoggedin = () => {
+var checkLoggedin = ($http,$rootScope,$location) => {
+  $http.get('/loggedin')
+    .then( (user)=> {
+      if(user.data !== '0') {
+      console.log("something here");
+      $rootScope.currentUser = user.data;
+      }
 
-}
+      else {
+        $rootScope.errorMEssage = "You need to log in";
+        $location.url('/login')
+      }
+    })
+  }
