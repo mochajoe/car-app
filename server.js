@@ -1,14 +1,16 @@
 var express = require('express');
 var app = express();
 var passport = require('passport');
+LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-var db = mongoose.connection;
 var User = ('./model/user')
 var session = require("express-session")
 var flash = require('connect-flash');
 var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var multer = require('multer'); // v1.0.5
+var upload = multer(); // for parsing multipart/form-data
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -23,7 +25,6 @@ app.use(session({
     saveUninitialized: false
 }));
 
-LocalStrategy = require('passport-local').Strategy;
 passportLocalMongoose = require('passport-local-mongoose');
 
 app.use(express.static(__dirname + '/client'));
@@ -57,22 +58,23 @@ var UserModel = mongoose.model("UserModel", UserSchema);
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+//this is the local strategy that is configured
 passport.use(new LocalStrategy(
 function(username, password, done)
 {
-  console.log("in passport");
-  UserModel.findOne({username: username, password: password}, function (err, user){
-    if(user)
-    {
-      console.log("in passport");
 
-      // if user is found return user
-      return done(null, user);
-    }
-    // otherwise we return false
+  // console.log("in passport");
+  // UserModel.findOne({username: username, password: password}, function (err, user){
+  //   if(user)
+  //   {
+  //     console.log("in passport");
+
+  //     // if user is found return user
+  //     return done(null, user);
+  //   }
+  //   // otherwise we return false
     return done(null, false, {message: 'Unable to login'});
-  });
+  // });
 }));
 
 
@@ -101,7 +103,7 @@ app.get("/register", (req, res) => {
     });
 });
 
-app.get('/login', function(req, res){
+app.get('/login', function(req, res) {
   res.sendFile(__dirname + '/client/index.html');
 });
 
@@ -113,12 +115,17 @@ app.get("/loggedin", function(req, res){
   res.send(req.isAuthenticated() ? req.user : '0');
 });
 
+//passports looks at this request first, local is the easiest strategy, username and password
+app.post('/login',passport.authenticate('local'), (req,res) => {
+  console.log('/login');
+  console.log(req.body);
+})
 
-app.post('/login',
-  passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login',
-                                   failureFlash: true })
-);
+// app.post('/login',
+//   passport.authenticate('local', { successRedirect: '/',
+//                                    failureRedirect: '/login',
+//                                    failureFlash: true })
+// );
 
 app.post("/register", function (req, res){
   UserModel.findOne({username: req.body.username}, function(err, user){
