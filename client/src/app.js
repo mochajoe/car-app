@@ -20,8 +20,7 @@ app.config(function($routeProvider, $locationProvider) {
   .when('/account', {
     templateUrl: '/src/views/account.html',
     resolve : {
-      //we can go here if the following dependancies are resolved
-      //have a logincheck
+      //we can go here if the following dependancies are resolved, that is what resolve is
       logincheck: checkLoggedin
 
     }
@@ -37,8 +36,8 @@ var checkLoggedin = ($http,$rootScope,$location) => {
   $http.get('/loggedin')
     .then( (user)=> {
       if(user.data !== '0') {
-      console.log("something here");
-      $rootScope.currentUser = user.data;
+        $rootScope.currentUser = user.data;
+        console.log($rootScope.currentUser );
       }
 
       else {
