@@ -1,5 +1,5 @@
 app.controller("searchBarCtrl", function($scope) {
-
+    $scope.newDivTemplate = "src/views/carDetails.html"
     $scope.makes = window.carData.makes
     $scope.searchMake = (make) => {
       $scope.currentMake=make;
@@ -69,47 +69,154 @@ app.controller("searchBarCtrl", function($scope) {
       }
     }
 
+    $scope.passModelToDetail = (model) => {
+      $scope.carDetailModel = model
+      $scope.clickDetails(model)
+    }
+
+
+
     $scope.clickDetails = (model) => {
+      var model = $scope.carDetailModel
+      $scope.getStyle(model, function(data){
+        $scope.styleId = data.styles[0].id;
+        $scope.style = data;
+      })
 
-      // $scope.getStyleId(model, function(data){
 
-      // })
+      $scope.getEquipmentData($scope.styleId, function(data) {
+        $scope.equipmentData = data;
+        console.log(data)
+
+      })
 
       $scope.model = model;
       $scope.make = $('#make').val();
-      $scope.yearsAvailable = $scope.modelsAndYears[model].join(' ');
-      $scope.bodyType = window.sampleStyleData.styles[0].submodel.body;
-      $scope.transmission = window.sampleEquipmentData.equipment[34].transmissionType;
-      $scope.mpg = window.sampleEquipmentData.equipment[22].attributes[3].value + '/' + window.sampleEquipmentData.equipment[22].attributes[4].value;
-      $scope.fuelCapacity = window.sampleEquipmentData.equipment[22].attributes[5].value;
-      $scope.driveType = window.sampleEquipmentData.equipment[24].attributes[0].value;
-      $scope.cylinder = window.sampleEquipmentData.equipment[33].cylinder;
-      $scope.size = window.sampleEquipmentData.equipment[33].size;
-      $scope.displacement = window.sampleEquipmentData.equipment[33].displacement;
-      $scope.gasType = window.sampleEquipmentData.equipment[33].fuelType;
-      $scope.engineCode = window.sampleEquipmentData.equipment[33].code;
+      $scope.yearsAvailable = $scope.modelsAndYears[model].join(' | ');
+      $scope.bodyType = $scope.style.styles[0].submodel.body;
 
-      $scope.seating = window.sampleEquipmentData.equipment[17].attributes.reduce(function(a,b) {
-          if (typeof a !== "number") {
-            a = parseInt(a.value)
-          }
-          if (typeof b !== "number") {
-            b= parseInt(b.value)
-          }
-          return a + b
-      });
+      $scope.equipmentData.equipment.forEach(function(equipment) {
+        if (equipment.name === "Seating Configuration") {
+          $scope.seating = equipment.attributes.reduce(function(a,b) {
+              if (typeof a !== "number") {
+                a = parseInt(a.value)
+              }
+              if (typeof b !== "number") {
+                b= parseInt(b.value)
+              }
+              return a + b
+          });
+        }
 
-      console.log(window.sampleEquipmentData.equipment[34])
+        if (equipment.equipmentType === "TRANSMISSION") {
+          $scope.transmission = equipment.transmissionType;
+        }
+
+        if (equipment.name === "Specifications") {
+          var city = "";
+          var highway = "";
+          var combined = "";
+          equipment.attributes[3].value + '/' + equipment.attributes[4].value;
+
+          equipment.attributes.forEach(function(item) {
+            if (item.name === "Epa City Mpg") {
+              city = item.value + " City";
+            }
+            if (item.name === "Epa Highway Mpg") {
+              highway = item.value + " Highway";
+            }
+            if(item.name === "Epa Combined Mpg") {
+              combined = item.value + " Combined"
+            }
+            if(item.name === "Fuel Capacity") {
+              $scope.fuelCapacity = item.value
+            }
+          })
+          $scope.mpg = city + "/" + highway + "/" + combined;
+        }
+
+        if (equipment.name === "Drive Type") {
+          equipment.attributes.forEach(function(item) {
+            if (item.name ==="Driven Wheels") {
+              $scope.driveType = item.value;
+            }
+          });
+        }
+
+        if (equipment.equipmentType === "ENGINE" && equipment.cylinder) {
+          $scope.cylinder = equipment.cylinder;
+        }
+
+        if (equipment.equipmentType === "ENGINE" && equipment.size) {
+          $scope.size = equipment.size;
+        }
+
+        if (equipment.equipmentType === "ENGINE" && equipment.displacement) {
+          $scope.displacement = equipment.displacement;
+        }
+
+        if (equipment.equipmentType === "ENGINE" && equipment.fuelType) {
+          $scope.gasType = equipment.fuelType;
+        }
+
+        if (equipment.equipmentType === "ENGINE" &&  equipment.code && !$scope.engineCode) {
+          $scope.engineCode = equipment.code;
+        }
+
+      })
+
+
+
+
 
       //console.log($scope.transmission)
     }
 
-    $scope.getStyleId = (callback) => {
+    $scope.getStyle = (model, callback) => {
+      var make = $('#make').val();
+      var yearsArr = $scope.modelsAndYears[model];
+      var year = yearsArr[yearsArr.length-1];
+      var url = "https://api.edmunds.com/api/vehicle/v2/" + make + "/" + model + "/" + year + "/styles?fmt=json&api_key=";
       $.ajax({
-        url: '',
+        url: url + "2k98pna4hq6mcrwte39t2gcg",
         success: function(data) {
-          callback(data)
-        }
+           callback(data)
+        },
+        error: function() {
+          $.ajax({
+            url: url + "73nq99k66vq774ycfte8fthk",
+            success: function(data) {
+               callback(data)
+            },
+            error: function() {
+            },
+            async: false
+          })
+        },
+        async: false
+      })
+    }
+
+    $scope.getEquipmentData = (styleId, callback) => {
+      var api_key = "2k98pna4hq6mcrwte39t2gcg";
+      var url = "https://api.edmunds.com/api/vehicle/v2/styles/"+ styleId + "/equipment?fmt=json&api_key=";
+      $.ajax({
+        url: url + "2k98pna4hq6mcrwte39t2gcg",
+        success: function(data) {
+           callback(data)
+        },
+        error: function() {
+          $.ajax({
+            url: url + "73nq99k66vq774ycfte8fthk",
+            success: function(data) {
+               callback(data)
+            },
+            error: function() {
+            },
+            async: false
+          })
+        },
+        async: false
       })
     }
 
