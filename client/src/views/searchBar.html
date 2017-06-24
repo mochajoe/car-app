@@ -2,8 +2,7 @@
 
 
 <div>
-  <div class="results" id="loginform">
-<h1>Search Cars</h1>
+<h2>Search Cars</h2>
   <div class="searchbar">
     <span>
       Select Make:
@@ -50,8 +49,37 @@
       </select>
     </span>
 
+    <span ng-show="showStyles">
+      Style:
+      <select
+        class = "dropdowns"
+        id = "style"
+        ng-model="selectedStyle"
+        ng-change="searchStyle(style)">
+          <option>Show All Styles</option>
+          <option>4dr Hatchback</option>
+          <option>Coupe</option>
+          <option>Convertible</option>
+          <option>Sedan</option>
+          <option>2dr Hatchback</option>
+          <option>Wagon</option>
+          <option>Regular Cab Pickup</option>
+          <option>Extended Cab Pickup</option>
+          <option>Crew Cab Pickup</option>
+          <option>2dr SUV</option>
+          <option>4dr SUV</option>
+          <option>Convertible SUV</option>
+          <option>Cargo Van/option>
+          <option>Passenger Van</option>
+          <option>Cargo Minivan</option>
+          <option>Passenger Minivan</option>
+
+      </select>
+    </span>
+
   </div>
-  <br>
+
+  <div class="results">
     <div
       class="modelsbox"
       ng-repeat="model in filteredModelsArr"
@@ -70,8 +98,8 @@
 
 
     </div>
-    <div ng-include="newDivTemplate">
-    </div>
   </div>
 
 </div>
+    <div ng-include="newDivTemplate">
+    </div>

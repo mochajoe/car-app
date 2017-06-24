@@ -1,3 +1,5 @@
+//bptp3rjw8nhgtn8bzweudqg9
+
 app.controller("searchBarCtrl", function($scope) {
     $scope.newDivTemplate = "src/views/carDetails.html"
     $scope.makes = window.carData.makes
@@ -70,8 +72,10 @@ app.controller("searchBarCtrl", function($scope) {
     }
 
     $scope.passModelToDetail = (model) => {
+      alert("Please wait while we grab the details")
       $scope.carDetailModel = model
       $scope.clickDetails(model)
+
     }
 
 
@@ -79,14 +83,23 @@ app.controller("searchBarCtrl", function($scope) {
     $scope.clickDetails = (model) => {
       var model = $scope.carDetailModel
       $scope.getStyle(model, function(data){
-        $scope.styleId = data.styles[0].id;
-        $scope.style = data;
+        if (!data) {
+          $scope.style = window.sampleStyleData;
+        } else {
+          $scope.styleId = data.styles[0].id;
+          $scope.style = data;
+        }
+
+        // $scope.styleId = data.styles[0].id;
+        // $scope.style = data;
       })
 
 
       $scope.getEquipmentData($scope.styleId, function(data) {
         $scope.equipmentData = data;
-        console.log(data)
+        if (!$scope.equipmentData) {
+          $scope.equipmentData = window.sampleEquipmentData;
+        }
 
       })
 
@@ -173,51 +186,56 @@ app.controller("searchBarCtrl", function($scope) {
     }
 
     $scope.getStyle = (model, callback) => {
+      //bptp3rjw8nhgtn8bzweudqg9
+      //2k98pna4hq6mcrwte39t2gcg
+
       var make = $('#make').val();
       var yearsArr = $scope.modelsAndYears[model];
       var year = yearsArr[yearsArr.length-1];
       var url = "https://api.edmunds.com/api/vehicle/v2/" + make + "/" + model + "/" + year + "/styles?fmt=json&api_key=";
-      $.ajax({
-        url: url + "2k98pna4hq6mcrwte39t2gcg",
-        success: function(data) {
-           callback(data)
-        },
-        error: function() {
-          $.ajax({
-            url: url + "73nq99k66vq774ycfte8fthk",
-            success: function(data) {
-               callback(data)
-            },
-            error: function() {
-            },
-            async: false
-          })
-        },
-        async: false
-      })
+      callback()
+      // $.ajax({
+      //   url: url + "bptp3rjw8nhgtn8bzweudqg9",
+      //   success: function(data) {
+      //      callback(data)
+      //   },
+      //   error: function() {
+      //     $.ajax({
+      //       url: url + "73nq99k66vq774ycfte8fthk",
+      //       success: function(data) {
+      //          callback(data)
+      //       },
+      //       error: function() {
+      //       },
+      //       async: false
+      //     })
+      //   },
+      //   async: false
+      // })
     }
 
     $scope.getEquipmentData = (styleId, callback) => {
-      var api_key = "2k98pna4hq6mcrwte39t2gcg";
       var url = "https://api.edmunds.com/api/vehicle/v2/styles/"+ styleId + "/equipment?fmt=json&api_key=";
-      $.ajax({
-        url: url + "2k98pna4hq6mcrwte39t2gcg",
-        success: function(data) {
-           callback(data)
-        },
-        error: function() {
-          $.ajax({
-            url: url + "73nq99k66vq774ycfte8fthk",
-            success: function(data) {
-               callback(data)
-            },
-            error: function() {
-            },
-            async: false
-          })
-        },
-        async: false
-      })
+
+      callback()
+      // $.ajax({
+      //   url: url + "bptp3rjw8nhgtn8bzweudqg9",
+      //   success: function(data) {
+      //      callback(data)
+      //   },
+      //   error: function() {
+      //     $.ajax({
+      //       url: url + "73nq99k66vq774ycfte8fthk",
+      //       success: function(data) {
+      //          callback(data)
+      //       },
+      //       error: function() {
+      //       },
+      //       async: false
+      //     })
+      //   },
+      //   async: false
+      // })
     }
 
 
