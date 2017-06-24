@@ -33,6 +33,14 @@ app.config(function($routeProvider, $locationProvider) {
   $locationProvider.html5Mode(true)
 });
 
+app.controller("appCtrl", function($scope) {
+  var images = ["/images/tesla.jpeg", "/images/bmw.jpeg", "/images/porche.jpeg", "/images/rover.jpeg", "/images/bg5.jpeg", "/images/1.jpeg", "/images/2.jpeg", "/images/3.jpeg", "/images/4.jpeg", "/images/5.jpg", "/images/6.jpg", "/images/7.jpeg", "/images/8.jpeg", "/images/9.jpeg", "/images/10.jpg", "/images/11.jpeg"]
+
+  var index = Math.floor(Math.random()*images.length)
+
+  $scope.image = images[index];
+})
+
 // need to write a function to checkLogged in
 
 

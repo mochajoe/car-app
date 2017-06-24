@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html ng-app="app" ng-controller="appCtrl">
   <head>
     <title>Car App</title>
     <script src="node_modules/lodash/lodash.js"></script>
@@ -27,7 +27,7 @@
     <base href="/" />
 
   </head>
-  <body background="images/bg5.jpeg" >
+  <body background="{{image}}">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -44,11 +44,8 @@
       </ul>
     </div>
   </nav>
-
-    <div ng-app="app">
       <div ng-view></div>
 
-    </div>
   </body>
 </html>
 
