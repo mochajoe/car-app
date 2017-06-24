@@ -83,8 +83,15 @@ app.controller("searchBarCtrl", function($scope) {
     $scope.clickDetails = (model) => {
       var model = $scope.carDetailModel
       $scope.getStyle(model, function(data){
-        $scope.styleId = data.styles[0].id;
-        $scope.style = data;
+        if (!data) {
+          $scope.style = window.sampleStyleData;
+        } else {
+          $scope.styleId = data.styles[0].id;
+          $scope.style = data;
+        }
+
+        // $scope.styleId = data.styles[0].id;
+        // $scope.style = data;
       })
 
 
@@ -186,46 +193,49 @@ app.controller("searchBarCtrl", function($scope) {
       var yearsArr = $scope.modelsAndYears[model];
       var year = yearsArr[yearsArr.length-1];
       var url = "https://api.edmunds.com/api/vehicle/v2/" + make + "/" + model + "/" + year + "/styles?fmt=json&api_key=";
-      $.ajax({
-        url: url + "bptp3rjw8nhgtn8bzweudqg9",
-        success: function(data) {
-           callback(data)
-        },
-        error: function() {
-          $.ajax({
-            url: url + "73nq99k66vq774ycfte8fthk",
-            success: function(data) {
-               callback(data)
-            },
-            error: function() {
-            },
-            async: false
-          })
-        },
-        async: false
-      })
+      callback()
+      // $.ajax({
+      //   url: url + "bptp3rjw8nhgtn8bzweudqg9",
+      //   success: function(data) {
+      //      callback(data)
+      //   },
+      //   error: function() {
+      //     $.ajax({
+      //       url: url + "73nq99k66vq774ycfte8fthk",
+      //       success: function(data) {
+      //          callback(data)
+      //       },
+      //       error: function() {
+      //       },
+      //       async: false
+      //     })
+      //   },
+      //   async: false
+      // })
     }
 
     $scope.getEquipmentData = (styleId, callback) => {
       var url = "https://api.edmunds.com/api/vehicle/v2/styles/"+ styleId + "/equipment?fmt=json&api_key=";
-      $.ajax({
-        url: url + "bptp3rjw8nhgtn8bzweudqg9",
-        success: function(data) {
-           callback(data)
-        },
-        error: function() {
-          $.ajax({
-            url: url + "73nq99k66vq774ycfte8fthk",
-            success: function(data) {
-               callback(data)
-            },
-            error: function() {
-            },
-            async: false
-          })
-        },
-        async: false
-      })
+
+      callback()
+      // $.ajax({
+      //   url: url + "bptp3rjw8nhgtn8bzweudqg9",
+      //   success: function(data) {
+      //      callback(data)
+      //   },
+      //   error: function() {
+      //     $.ajax({
+      //       url: url + "73nq99k66vq774ycfte8fthk",
+      //       success: function(data) {
+      //          callback(data)
+      //       },
+      //       error: function() {
+      //       },
+      //       async: false
+      //     })
+      //   },
+      //   async: false
+      // })
     }
 
 
