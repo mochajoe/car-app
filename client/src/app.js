@@ -25,6 +25,10 @@ app.config(function($routeProvider, $locationProvider) {
 
     }
   })
+  .when('/logout', {
+    templateUrl: '/src/views/logout.html',
+    controller: 'logoutCtrl'
+  })
 
   $locationProvider.html5Mode(true)
 });

@@ -67,8 +67,6 @@ app.use(passport.session());
 passport.use(new LocalStrategy(
 function(username, password, done)
 {
-
-   console.log("in passport");
    UserModel.findOne({username: username, password: password}, function (err, user){
     if(user)
     {
@@ -115,6 +113,10 @@ app.get('/searchBar', (req, res) => {
   res.sendFile(__dirname + '/client/index.html');
 })
 
+app.get('/logout', (req, res) => {
+  res.sendFile(__dirname + '/client/index.html');
+})
+
 app.get("/loggedin", function(req, res){
   res.send(req.isAuthenticated() ? req.user : '0');
 });
@@ -126,8 +128,6 @@ app.post("/logout", function(req, res){
 
 //passports looks at this request first, local is the easiest strategy, username and password
 app.post('/login',passport.authenticate('local'), (req,res) => {
-  console.log('/login');
-  console.log(req.user);
   res.json(req.user);
 })
 //check if that user exists already in our data base
