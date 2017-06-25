@@ -248,11 +248,49 @@ app.controller("searchBarCtrl", function($scope) {
     }
 
     $scope.getPhoto = (styleId, callback) => {
+      var url = "https://api.edmunds.com/api/media/v2/styles/"+styleId+"/photos?api_key="
       callback(window.samplePhotos)
+      // $.ajax({
+      //   url: url + "bptp3rjw8nhgtn8bzweudqg9",
+      //   success: function(data) {
+      //      callback(data)
+      //   },
+      //   error: function() {
+      //     $.ajax({
+      //       url: url + "73nq99k66vq774ycfte8fthk",
+      //       success: function(data) {
+      //          callback(data)
+      //       },
+      //       error: function() {
+      //       },
+      //       async: false
+      //     })
+      //   },
+      //   async: false
+      // })
     }
 
     $scope.getMSRP = (styleId, callback) => {
+      var url = "https://api.edmunds.com/v1/api/configurator/default?zip=90019&styleid=" + styleId + "&fmt=json&api_key=";
       callback(window.modelConfig)
+      // $.ajax({
+      //   url: url + "bptp3rjw8nhgtn8bzweudqg9",
+      //   success: function(data) {
+      //      callback(data)
+      //   },
+      //   error: function() {
+      //     $.ajax({
+      //       url: url + "73nq99k66vq774ycfte8fthk",
+      //       success: function(data) {
+      //          callback(data)
+      //       },
+      //       error: function() {
+      //       },
+      //       async: false
+      //     })
+      //   },
+      //   async: false
+      // })
     }
 })
 

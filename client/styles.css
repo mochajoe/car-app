@@ -1,3 +1,4 @@
+
 body {
   background-size: cover;
   background-attachment: fixed;
@@ -21,6 +22,7 @@ h1 {
 }
 
 h2 {
+  margin-top: 10%;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
@@ -75,7 +77,7 @@ input {
 }
 
 .model:hover {
-  background-color: #ccffff;
+  background-color: #f2f2f2;
 }
 
 .model {
@@ -110,4 +112,45 @@ input {
 #detailsButton {
   overflow: hidden;
   float:right;
+}
+
+h3 {
+  font-size: 50px
+}
+
+.titles {
+  width:100%;
+  padding: 50px;
+  background-color: white;
+  color: black;
+}
+
+#team {
+  margin: 50px auto;
+  width: 500px;
+  overflow: hidden;
+  color: black;
+}
+
+#person1, #person2 {
+  width:250px;
+  float: left;
+
+}
+
+.name {
+  font-family: 'Monoton', Arial;
+}
+
+.carisma {
+  padding: 15% 0;
+  font-size: 120px;
+  color: #cccccc;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black
+}
+
+.searchcarbutton {
+  font-size:20px;
+  font-family: Arial;
+  color: black;
 }
