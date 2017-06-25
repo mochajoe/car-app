@@ -80,7 +80,7 @@ app.controller("searchBarCtrl", function($scope) {
 
     $scope.clickDetails = (model) => {
       var model = $scope.carDetailModel
-
+      var api_keys = ["2k98pna4hq6mcrwte39t2gcg", "73nq99k66vq774ycfte8fthk", "bptp3rjw8nhgtn8bzweudqg9", "vwp9323cjna6pjxg5jqtc3qc"]
       $scope.getStyle(model, function(data){
         $scope.styleId = data.styles[0].id;
         $scope.style = data;
@@ -200,97 +200,66 @@ app.controller("searchBarCtrl", function($scope) {
       var year = yearsArr[yearsArr.length-1];
       var url = "https://api.edmunds.com/api/vehicle/v2/" + make + "/" + model + "/" + year + "/styles?fmt=json&api_key=";
 
-      callback(window.sampleStyleData)// comment this out after enabling ajax call
+      // callback(window.sampleStyleData)// comment this out after enabling ajax call
 
-      // $.ajax({
-      //   url: url + "bptp3rjw8nhgtn8bzweudqg9",
-      //   success: function(data) {
-      //      callback(data)
-      //   },
-      //   error: function() {
-      //     $.ajax({
-      //       url: url + "73nq99k66vq774ycfte8fthk",
-      //       success: function(data) {
-      //          callback(data)
-      //       },
-      //       error: function() {
-      //       },
-      //       async: false
-      //     })
-      //   },
-      //   async: false
-      // })
+      $.ajax({
+        url: url + "2k98pna4hq6mcrwte39t2gcg",
+        success: function(data) {
+           callback(data)
+        },
+        error: function() {
+
+          })
+        },
+        async: false
+      })
     }
 
     $scope.getEquipmentData = (styleId, callback) => {
       var url = "https://api.edmunds.com/api/vehicle/v2/styles/"+ styleId + "/equipment?fmt=json&api_key=";
 
-      callback(window.sampleEquipmentData)  // comment this out to run ajax call
+      // callback(window.sampleEquipmentData)  // comment this out to run ajax call
 
-      // $.ajax({
-      //   url: url + "bptp3rjw8nhgtn8bzweudqg9",
-      //   success: function(data) {
-      //      callback(data)
-      //   },
-      //   error: function() {
-      //     $.ajax({
-      //       url: url + "73nq99k66vq774ycfte8fthk",
-      //       success: function(data) {
-      //          callback(data)
-      //       },
-      //       error: function() {
-      //       },
-      //       async: false
-      //     })
-      //   },
-      //   async: false
-      // })
+      $.ajax({
+        url: url + "73nq99k66vq774ycfte8fthk",
+        success: function(data) {
+           callback(data)
+        },
+        error: function() {
+
+        },
+        async: false
+      })
     }
 
     $scope.getPhoto = (styleId, callback) => {
       var url = "https://api.edmunds.com/api/media/v2/styles/"+styleId+"/photos?api_key="
-      callback(window.samplePhotos)
-      // $.ajax({
-      //   url: url + "bptp3rjw8nhgtn8bzweudqg9",
-      //   success: function(data) {
-      //      callback(data)
-      //   },
-      //   error: function() {
-      //     $.ajax({
-      //       url: url + "73nq99k66vq774ycfte8fthk",
-      //       success: function(data) {
-      //          callback(data)
-      //       },
-      //       error: function() {
-      //       },
-      //       async: false
-      //     })
-      //   },
-      //   async: false
-      // })
+      // callback(window.samplePhotos)
+      $.ajax({
+        url: url + "bptp3rjw8nhgtn8bzweudqg9",
+        success: function(data) {
+           callback(data)
+        },
+        error: function() {
+
+        },
+        async: false
+      })
     }
 
     $scope.getMSRP = (styleId, callback) => {
       var url = "https://api.edmunds.com/v1/api/configurator/default?zip=90019&styleid=" + styleId + "&fmt=json&api_key=";
-      callback(window.modelConfig)
-      // $.ajax({
-      //   url: url + "bptp3rjw8nhgtn8bzweudqg9",
-      //   success: function(data) {
-      //      callback(data)
-      //   },
-      //   error: function() {
-      //     $.ajax({
-      //       url: url + "73nq99k66vq774ycfte8fthk",
-      //       success: function(data) {
-      //          callback(data)
-      //       },
-      //       error: function() {
-      //       },
-      //       async: false
-      //     })
-      //   },
-      //   async: false
-      // })
+      // callback(window.modelConfig)
+      $.ajax({
+        url: url + "pe5kbjpqpw5zmeu6y7ddrwtj",
+        success: function(data) {
+           callback(data)
+        },
+        error: function() {
+
+        },
+        async: false
+      })
     }
 })
 
