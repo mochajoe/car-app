@@ -209,7 +209,6 @@ app.controller("searchBarCtrl", function($scope) {
         },
         error: function() {
 
-          })
         },
         async: false
       })
