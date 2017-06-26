@@ -1,7 +1,6 @@
 app.controller("registerCtrl", function($scope,$http,$rootScope,$window,$location) {
   $scope.register = function(user)
   {
-    console.log(user);
     //TODO verify that passwords are the same and then invocate the post
     if(user.password === user.password2){
     $http.post('/register', user).then(function successCallback(user) {
@@ -13,7 +12,6 @@ app.controller("registerCtrl", function($scope,$http,$rootScope,$window,$locatio
       //alert a successful login
       $window.alert("SUCCESS, REDIRECTING TO ACCOUNT PAGE!!!!!")
       $location.url("/account");
-      console.log(user)
       }
 
       // console.log(user);

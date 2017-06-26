@@ -48,7 +48,6 @@ var checkLoggedin = ($http,$rootScope,$location) => {
     .then( (user)=> {
       if(user.data !== '0') {
         $rootScope.currentUser = user.data;
-        console.log($rootScope.currentUser );
       }
 
       else {
