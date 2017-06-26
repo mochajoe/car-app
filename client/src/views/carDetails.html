@@ -29,8 +29,8 @@
         <p>Gas Type: {{gasType}}</p>
         <p>Engine Code: {{engineCode}}</p>
         </div>
-        <div>
-        <button>Add to Favorites</button>
+        <div ng-controller="searchBarCtrl">
+        <button ng-click="addToFavorite(currentUser,make,model,year)">Add to Favorites</button>
         </div>
         <br>
         <div align="center">

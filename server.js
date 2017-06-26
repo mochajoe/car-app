@@ -43,7 +43,8 @@ var UserSchema = new mongoose.Schema({
   username: String,
   password: String,
   location: String,
-  bio: String
+  bio: String,
+  favoriteCars: Array
 });
 
 // model for maintaining user data
@@ -56,7 +57,7 @@ var UserModel = mongoose.model("UserModel", UserSchema);
 // student.save();
 
 //Authentication
-
+// model for maintaining user favorites
 
 
 app.use(passport.initialize());
@@ -151,11 +152,15 @@ app.post("/register", function (req, res){
     }
   })
   var newUser = req.body;
-  console.log(newUser);
 });
 
-
-
+app.post("/favoriteCar", (req,res) =>{
+  console.log('/favoriteCar');
+  console.log(req.body);
+  UserModel.findOneAndUpdate({username:req.body.user.username},{$push:{favoriteCars:`${req.body.year} ${req.body.make} ${req.body.model}` }}, (err,user) => {
+    return res.json(user);
+  })
+});
 
 
 
