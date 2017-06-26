@@ -43,7 +43,21 @@ var UserSchema = new mongoose.Schema({
   username: String,
   password: String,
   location: String,
-  bio: String
+  bio: String,
+  favoriteCars: [{
+
+  }]
+});
+
+var CarSchema = new mongoose.Schema({
+  edmundsID: Number,
+  vehicleName: String,
+  modelYear: Number
+});
+
+var UserToCarFavoritesSchema = new mongoose.Schema({
+  favoritedUsername: String,
+  edmundsID: Number
 });
 
 // model for maintaining user data
@@ -56,7 +70,8 @@ var UserModel = mongoose.model("UserModel", UserSchema);
 // student.save();
 
 //Authentication
-
+// model for maintaining user favorites
+var UserToCarFavoritesModel = mongoose.model("UserToCarFavoritesModel", UserToCarFavoritesSchema);
 
 
 app.use(passport.initialize());
@@ -153,6 +168,14 @@ app.post("/register", function (req, res){
   var newUser = req.body;
   console.log(newUser);
 });
+
+app.post("/favoriteCar", (req,res) =>{
+  UserModel.findOneAndUpdate({username:req.body.username}, (err,user) => {
+    console.log(req.body.username);
+      if(err) throw err;
+    })
+
+  })
 
 
 
