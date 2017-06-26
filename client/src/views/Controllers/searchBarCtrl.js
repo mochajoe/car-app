@@ -72,7 +72,7 @@ app.controller("searchBarCtrl", function($scope) {
     }
 
     $scope.passModelToDetail = (model) => {
-      alert("Please wait while we grab the details")
+      // alert("Please wait while we grab the details")
       $scope.carDetailModel = model
       $scope.clickDetails(model)
 
@@ -209,8 +209,8 @@ app.controller("searchBarCtrl", function($scope) {
         },
         error: function() {
 
-        },
-        async: false
+        }
+        // async: false
       })
     }
 
