@@ -262,17 +262,14 @@ app.controller("searchBarCtrl", function($scope,$http) {
       })
     }
 
-    $scope.addToFavorite = function(user,make,model,year) {
-        var carObj = {user,make,model,year};
 
+    $scope.addToFavorite = function(user,make,model,year,id) {
+        var carObj = {user,make,model,year,id};
+        console.log(id);
         $http.post('/favoriteCar', carObj ).then((request) => {
-          console.log(request)
+          $scope.currentUserFavorites.push(id);
         })
         }
-
-
-
-
 
 })
 

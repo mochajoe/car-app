@@ -44,7 +44,8 @@ var UserSchema = new mongoose.Schema({
   password: String,
   location: String,
   bio: String,
-  favoriteCars: Array
+  favoriteCars: Array,
+  edmundIds: Array
 });
 
 // model for maintaining user data
@@ -154,11 +155,14 @@ app.post("/register", function (req, res){
   var newUser = req.body;
 });
 
+
+
+
 app.post("/favoriteCar", (req,res) =>{
   console.log('/favoriteCar');
   console.log(req.body);
-  UserModel.findOneAndUpdate({username:req.body.user.username},{$push:{favoriteCars:`${req.body.year} ${req.body.make} ${req.body.model}` }}, (err,user) => {
-    return res.json(user);
+  UserModel.findOneAndUpdate({username:req.body.user.username},{$push:{favoriteCars:{name:`${req.body.year} ${req.body.make} ${req.body.model}`}}}, (err,user) => {
+      res.json(user)
   })
 });
 

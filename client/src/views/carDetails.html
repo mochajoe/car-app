@@ -30,7 +30,9 @@
         <p>Engine Code: {{engineCode}}</p>
         </div>
         <div ng-controller="searchBarCtrl">
-        <button ng-click="addToFavorite(currentUser,make,model,year)">Add to Favorites</button>
+        <button
+        ng-if="currentUser"
+        ng-click="addToFavorite(currentUser,make,model,year,styleId)">Add to Favorites</button>
         </div>
         <br>
         <div align="center">
@@ -45,3 +47,4 @@
   </div>
 </div>
 </div>
+
