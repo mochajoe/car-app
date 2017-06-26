@@ -262,12 +262,8 @@ app.controller("searchBarCtrl", function($scope,$http) {
       })
     }
 
-    $scope.addToFavorite = function(user,make,model) {
-        var carObj = {
-          user: user
-          ,make
-          ,model
-        }
+    $scope.addToFavorite = function(user,make,model,year) {
+        var carObj = {user,make,model,year};
 
         $http.post('/favoriteCar', carObj ).then((request) => {
           console.log(request)
