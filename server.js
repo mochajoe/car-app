@@ -36,7 +36,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 // DATABASE
-var connectionString = /*I will add my mlabs database here* process.env./ ||*/ 'mongodb://localhost/test';
+var connectionString = "mongodb://user:user@ds139072.mlab.com:39072/heroku_tnw3lrsl" || 'mongodb://localhost/test';
 var db = mongoose.connect(connectionString);
 
 var UserSchema = new mongoose.Schema({
@@ -155,18 +155,17 @@ app.post("/register", function (req, res){
   var newUser = req.body;
 });
 
-
-
-
 app.post("/favoriteCar", (req,res) =>{
-  console.log('/favoriteCar');
-  console.log(req.body);
   UserModel.findOneAndUpdate({username:req.body.user.username},{$push:{favoriteCars:{name:`${req.body.year} ${req.body.make} ${req.body.model}`}}}, (err,user) => {
       res.json(user)
   })
 });
 
-
+app.post("/favoriteCarId", (req,res) =>{
+  UserModel.findOneAndUpdate({username:req.body.user.username},{$push:{edmundIds:req.body.Id}}, (err,user) => {
+      res.json(user)
+  })
+});
 
 var port = process.env.PORT || 3000;
 

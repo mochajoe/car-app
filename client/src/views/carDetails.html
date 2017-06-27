@@ -31,8 +31,10 @@
         </div>
         <div ng-controller="searchBarCtrl">
         <button
-        ng-if="currentUser"
-        ng-click="addToFavorite(currentUser,make,model,year,styleId)">Add to Favorites</button>
+         ng-if="currentUser"
+         ng-click="addToFavorite(currentUser,make,model,year,styleId);addToFavoriteId(currentUser,styleId)">Add to Favorites</button>
+         <button
+         ng-if="!currentUser">Please Login to add to favorites</button>
         </div>
         <br>
         <div align="center">
