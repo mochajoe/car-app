@@ -1,7 +1,5 @@
-//bptp3rjw8nhgtn8bzweudqg9
-
-app.controller("searchBarCtrl", function($scope,$http) {
-    $scope.currentUserFavorites = [];
+app.controller("searchBarCtrl", function($scope,$http,$window) {
+    $scope.currentUserFavorites =[];
     $scope.newDivTemplate = "src/views/carDetails.html"
     $scope.makes = window.carData.makes
     $scope.searchMake = (make) => {
@@ -262,16 +260,23 @@ app.controller("searchBarCtrl", function($scope,$http) {
       })
     }
 
-    $scope.addToFavorite = function(user,make,model,year) {
-        var carObj = {user,make,model,year};
 
+    $scope.addToFavorite = function(user,make,model,year,id) {
+        var carObj = {user,make,model,year};
+        console.log(carObj);
+        $window.alert('you have added a car to your favorites')
         $http.post('/favoriteCar', carObj ).then((request) => {
-          console.log(request)
+          console.log(request);
         })
         }
 
-
-
+    $scope.addToFavoriteId = function(user,id) {
+      var usrObj = {user,id}
+      console.log(usrObj);
+      $http.post('/favoriteCar', usrObj).then((request) => {
+          console.log(request);
+        })
+    }
 
 
 })
