@@ -18,6 +18,7 @@ app.config(function($routeProvider, $locationProvider) {
   })
   .when('/account', {
     templateUrl: '/src/views/account.html',
+    controller: 'accountCtrl',
     resolve : {
       //we can go here if the following dependancies are resolved, that is what resolve is
       logincheck: checkLoggedin

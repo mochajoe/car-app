@@ -156,6 +156,7 @@ app.post("/register", function (req, res){
 });
 
 app.post("/favoriteCar", (req,res) =>{
+
   UserModel.findOneAndUpdate({username:req.body.user.username},{$push:{favoriteCars:{name:`${req.body.year} ${req.body.make} ${req.body.model}`}}}, (err,user) => {
       res.json(user)
   })
@@ -166,6 +167,16 @@ app.post("/favoriteCarId", (req,res) =>{
       res.json(user)
   })
 });
+
+app.post("/getUserDetail", (req,res) => {
+  console.log(req.body)
+  UserModel.findOne({username: req.body.username}, (err, user) => {
+    console.log(err)
+    console.log(user)
+    res.json(user)
+
+  })
+})
 
 var port = process.env.PORT || 3000;
 
