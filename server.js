@@ -168,6 +168,16 @@ app.post("/favoriteCarId", (req,res) =>{
   })
 });
 
+app.post("/getUserDetail", (req,res) => {
+  console.log(req.body)
+  UserModel.findOne({username: req.body.username}, (err, user) => {
+    console.log(err)
+    console.log(user)
+    res.json(user)
+
+  })
+})
+
 var port = process.env.PORT || 3000;
 
 

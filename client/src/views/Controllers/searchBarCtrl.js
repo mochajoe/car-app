@@ -74,7 +74,7 @@ app.controller("searchBarCtrl", function($scope,$http,$window) {
       // alert("Please wait while we grab the details")
       $scope.carDetailModel = model
       $scope.clickDetails(model)
-
+      alert("Searching car details")
     }
 
     $scope.clickDetails = (model) => {
@@ -208,8 +208,8 @@ app.controller("searchBarCtrl", function($scope,$http,$window) {
         },
         error: function() {
 
-        }
-        // async: false
+        },
+        async: false
       })
     }
 
@@ -270,13 +270,13 @@ app.controller("searchBarCtrl", function($scope,$http,$window) {
         })
         }
 
-    $scope.addToFavoriteId = function(user,id) {
-      var usrObj = {user,id}
-      console.log(usrObj);
-      $http.post('/favoriteCar', usrObj).then((request) => {
-          console.log(request);
-        })
-    }
+    // $scope.addToFavoriteId = function(user,id) {
+    //   var usrObj = {user,id}
+    //   console.log(usrObj);
+    //   $http.post('/favoriteCar', usrObj).then((request) => {
+    //       console.log(request);
+    //     })
+    // }
 
 
 })
