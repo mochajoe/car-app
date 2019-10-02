@@ -42,6 +42,9 @@ var db = mongoose.connect(connectionString);
 var UserSchema = new mongoose.Schema({
   username: String,
   password: String,
+  name: String,
+  gender: String,
+  birthdate: String,
   location: String,
   bio: String,
   favoriteCars: Array,
